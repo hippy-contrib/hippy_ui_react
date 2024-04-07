@@ -1,0 +1,27 @@
+{
+  "name": "hippy_ui_react_example",
+  "version": "1.0.0",
+  "description": "hippy react ui",
+  "keywords": [],
+  "author": "linjinze999 <linjinze999@163.com>",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hippy-contrib/hippy_ui_react.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/hippy_ui_react.test.js"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "exclude": ["node_modules", "lib"],
+  "include": ["packages/*"],
+  "files": [],
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "lib": ["esnext", "dom"],
+    "jsx": "react" /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */,
+    "esModuleInterop": true,
+    "declaration": true,
+    "strict": false,
+    "skipLibCheck": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types",
+      "./packages/hippy_ui_react/src/types",
+      "./packages/hippy_ui_react_business/src/types"
+    ],
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "lib",
+    "paths": {
+      "@hippy/react": ["types/hippy.d.ts"],
+      "hippy_ui_react": ["packages/hippy_ui_react/src"],
+      "hippy_ui_react_business": ["packages/hippy_ui_react_business/src"]
+    }
+  },
+  "references": [
+    { "path": "packages/hippy_ui_react" },
+    { "path": "packages/hippy_ui_react_business" },
+    { "path": "example" }
+  ]
+}

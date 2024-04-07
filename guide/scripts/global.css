@@ -1,0 +1,150 @@
+html {
+  font-size: 14px !important;
+}
+
+.react-view {
+  position: relative;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+header[class^="rsg--logo"] {
+  padding: 0 !important;
+  border-bottom: none !important;
+  box-shadow: 0 2px 8px #f0f1f2 !important;
+}
+
+header[class^="rsg--logo"] h1 {
+  height: 76px !important;
+  padding: 16px !important;
+  display: flex;
+  align-items: center;
+}
+
+header[class^="rsg--logo"] h1::before {
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  margin-right: 10px;
+  content: "";
+  background-image: url("//qzonestyle.gtimg.cn/aoi/sola/20171204202403_ky5qmfv2QV.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+header[class^="rsg--logo"] > p {
+  margin-left: 70px !important;
+  margin-top: -15px !important;
+  padding-bottom: 10px !important;
+}
+
+nav > div[class^="rsg--search"] > input {
+  border: 1px solid #ccc;
+  line-height: 25px;
+  margin-left: 15px;
+  width: 250px;
+}
+
+.rsg--footer-6 {
+  display: none !important;
+}
+
+a[class^="rsg--link-"][href^="http"] {
+  color: rgb(22, 115, 177) !important;
+  display: inline-block;
+}
+a[class^="rsg--link-72"][href^="http"] {
+  color: rgb(255, 255, 255) !important;
+}
+
+.rsg--blockquote-67 {
+  border-left: 1px solid #ccc !important;
+  margin: 16px 0 !important;
+  padding: 16px !important;
+  background-color: #f8f8f8 !important;
+}
+
+code[class^="rsg--code-"] {
+  color: #476582 !important;
+  padding: 1px 5px !important;
+  margin: 0 5px !important;
+  font-size: .85em !important;
+  background-color: #f8f9fa !important;
+  border-radius: 3px !important;
+  border: 1px solid #eaecf0 !important;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+ul::-webkit-scrollbar {
+  display: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold !important;
+}
+
+/* [class^=rsg--sidebar] {
+  background-color: #fefefe !important;
+}
+
+.rsg--heading-20 .rsg--heading2-22 {
+  color: '#657180'
+}
+
+.rsg--header-11 .rsg--pathline-29 {
+  padding: 6px !important;
+  border: 1px solid #e9e9e9 !important;
+  background-color: #fafafa;
+} */
+/* 修改表格样式 */
+
+/*
+.rsg--tabs-12 .rsg--tabBody-14 .rsg--table-33 .rsg--tableHead-34 tr {
+  background-color: #f7f7f7;
+}
+.rsg--tabs-12 .rsg--tabBody-14 .rsg--table-33 .rsg--tableHead-34 th {
+  width: 25%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  text-align: left;
+  padding-left: 10px;
+  border: 1px solid #e9e9e9;
+}
+.rsg--tabs-12 .rsg--tabBody-14 .rsg--table-33 tbody .rsg--cell-36 {
+  font-size: 12px;
+  text-align: left;
+  padding-left: 10px;
+  border: 1px solid #e9e9e9;
+}
+
+.rsg--type-39, .rsg--name-37, .rsg--code-40, .rsg--para-41 {
+  color: #657180 !important;
+}
+
+.rsg--heading-20, .rsg--heading2-22 {
+  font-size: 20px !important;
+}
+.npm__react-simple-code-editor__textarea {
+  background-color: #fafafa !important;
+}
+.rsg-root {
+  background-color: #ffffe1;
+} */

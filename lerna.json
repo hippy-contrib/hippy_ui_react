@@ -1,0 +1,13 @@
+{
+  "packages": ["packages/*"],
+  "version": "independent",
+  "command": {
+    "version": {
+      "ignoreChanges": ["*.md", "*.txt", "tests/**", "__tests__/**", "**/tsconfig.json"],
+      "conventionalCommits": true,
+      "message": "chore(release): bump version",
+      "allowBranch": "main"
+    }
+  },
+  "npmClient": "yarn"
+}

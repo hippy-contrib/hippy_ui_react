@@ -1,0 +1,29 @@
+# 编译构建文件
+.DS_Store
+node_modules/
+styleguide/
+
+lib/
+
+# jest
+.cache
+coverage
+
+# vscode
+.vscode/
+.history
+# idea
+.idea
+
+# npm
+package-lock.json
+
+# yarn
+yarn-error.log
+
+# lerna
+lerna-debug.log
+
+tsconfig.tsbuildinfo
+
+docs
