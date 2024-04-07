@@ -5,7 +5,7 @@ const styles = require("./guide/scripts/styles");
 const theme = require("./guide/scripts/theme");
 
 module.exports = {
-  title: "Hippy React UI",
+  title: "Hippy UI React",
   pagePerSection: true,
   styleguideDir: "docs",
   ignore: ["./README.md"],
