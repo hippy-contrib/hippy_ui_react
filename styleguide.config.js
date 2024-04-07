@@ -49,7 +49,7 @@ module.exports = {
     const dirname = path.dirname(componentPath);
     const componentName = path.basename(dirname);
     const package = dirname.match(/packages\/(\S*)\/src/)[1];
-    const packageName = `@hippy/${package}`;
+    const packageName = `${package}`;
     return `import { ${componentName} } from "${packageName}";`;
   },
   version: package.version,
