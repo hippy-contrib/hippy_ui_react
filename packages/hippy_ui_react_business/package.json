@@ -27,5 +27,6 @@
   },
   "scripts": {
     "test": "node ./__tests__/hippy_ui_react_business.test.js"
-  }
+  },
+  "gitHead": "0a249cf7b0b42f366d5ac518406a199af4146897"
 }
