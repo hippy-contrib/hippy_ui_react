@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react_business@1.1.2...hippy_ui_react_business@1.1.3) (2024-04-08)
+
+
+### Bug Fixes
+
+* lerna commit ([7f731f9](https://github.com/hippy-contrib/hippy_ui_react/commit/7f731f99f8439b0b480c7751797e49bf28ef351e))
+
+
+
+
+
 ## [1.1.2](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react_business@1.1.1...hippy_ui_react_business@1.1.2) (2024-04-08)
 
 **Note:** Version bump only for package hippy_ui_react_business

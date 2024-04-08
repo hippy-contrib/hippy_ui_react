@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react@1.1.2...hippy_ui_react@1.1.3) (2024-04-08)
+
+
+### Bug Fixes
+
+* lerna commit ([7f731f9](https://github.com/hippy-contrib/hippy_ui_react/commit/7f731f99f8439b0b480c7751797e49bf28ef351e))
+* swiper key ([4b15949](https://github.com/hippy-contrib/hippy_ui_react/commit/4b15949533ce2d7e6503b2a177a0a3e9cd1df6b3))
+
+
+
+
+
 ## [1.1.2](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react@1.1.1...hippy_ui_react@1.1.2) (2024-04-08)
 
 
