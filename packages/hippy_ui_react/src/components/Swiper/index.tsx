@@ -1,4 +1,4 @@
-import React, { cloneElement, Component, isValidElement, ReactElement, ReactNode } from 'react';
+import React, { cloneElement, Component, isValidElement, ReactElement, ReactNode, Fragment } from 'react';
 import { Platform, View } from '@hippy/react';
 import ScrollView from '../../elements/ScrollView';
 
@@ -394,11 +394,11 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
         />
       );
       return (
-        <>
+        <Fragment key={index}>
           {_frontNode}
           {_child}
           {_backNode}
-        </>
+        </Fragment>
       );
     });
   };
