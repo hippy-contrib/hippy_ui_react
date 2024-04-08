@@ -373,14 +373,16 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
     return childList.map((child: ReactElement, index) => {
       // Hippy需要拦截onClick确保滑动交互不冲突
       const _child = cloneElement(child, {
+        key: `${index}_child`,
         onClick(e) {
           return child.props.onClick?.(e);
         },
       } as any);
       // 间距支持
-      const _frontNode = index === 0 ? <View style={{ width: startAndEnd }} /> : null;
+      const _frontNode = index === 0 ? <View key={`${index}_front`} style={{ width: startAndEnd }} /> : null;
       const _backNode = (
         <View
+          key={`${index}_back`}
           style={{ width: index === childList.length - 1 ? startAndEnd : between }}
           ref={(r) => {
             this.refSpacing[index] = r;
