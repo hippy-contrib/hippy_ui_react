@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react@1.1.3...hippy_ui_react@1.1.4) (2024-04-19)
+
+
+### Bug Fixes
+
+* Tabs mount ([04cbf8e](https://github.com/hippy-contrib/hippy_ui_react/commit/04cbf8e5be2fd4518d6e2e1fcc9da01f2212d690))
+
+
+
+
+
 ## [1.1.3](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react@1.1.2...hippy_ui_react@1.1.3) (2024-04-08)
 
 
