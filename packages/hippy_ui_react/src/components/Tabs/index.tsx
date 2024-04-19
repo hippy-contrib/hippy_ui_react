@@ -48,6 +48,10 @@ export class Tabs extends Component<TabsProps, TabsState> {
     return true;
   }
 
+  componentWillUnmount() {
+    this.hasMount = false;
+  }
+
   public refScrollView?: ScrollView | null;
   public scrollX = 0;
   private layoutItems: Record<number, LayoutEvent> = {};
