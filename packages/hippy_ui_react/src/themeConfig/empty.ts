@@ -25,6 +25,5 @@ export const emptyConfig: ThemeConfigEmpty = {
     style: {
       marginTop: 15,
     },
-    children: '数据为空',
   },
 };

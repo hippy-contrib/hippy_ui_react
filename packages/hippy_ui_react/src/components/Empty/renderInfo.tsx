@@ -25,7 +25,7 @@ export default function getRenderInfo(params: EmptyRenderParams): EmptyRenderInf
         source={image && typeof image === 'string' ? { uri: image } : themeConfig.emptyImg.source}
       />
     ),
-    text: isValidElement(desc) ? desc : <HiText {...themeConfig.emptyText} />,
+    text: isValidElement(desc) ? desc : <HiText {...themeConfig.emptyText}>{desc}</HiText>,
   };
   return renderInfo?.empty?.({ ...params, defaultRenderInfo: result }) || result;
 }

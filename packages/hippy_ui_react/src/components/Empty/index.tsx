@@ -8,6 +8,10 @@ import getRenderInfo from './renderInfo';
  * @visibleName Empty 空状态
  */
 export class Empty extends Component<EmptyProps, {}> {
+  static defaultProps = {
+    desc: '数据为空',
+  };
+
   render() {
     return (
       <Consumer>
