@@ -51,7 +51,7 @@ class Toast extends Component<ToastProps, ToastState> {
    * @param text 文本
    * @param props toast属性
    * */
-  static show(text: ToastProps['text'], props?: ToastProps) {
+  static show(text: ToastProps['text'], props?: Partial<ToastProps>) {
     Provider.updateGlobalView({
       [GLOBAL_VIEW_KEY_TOAST]: {
         data: [
