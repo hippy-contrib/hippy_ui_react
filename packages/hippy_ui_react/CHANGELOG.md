@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react@1.1.4...hippy_ui_react@1.1.5) (2024-04-23)
+
+
+### Bug Fixes
+
+* toast props ([f9b52a9](https://github.com/hippy-contrib/hippy_ui_react/commit/f9b52a9d2365864ce44af926fe1328ecddc53c1c))
+
+
+
+
+
 ## [1.1.4](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react@1.1.3...hippy_ui_react@1.1.4) (2024-04-19)
 
 
