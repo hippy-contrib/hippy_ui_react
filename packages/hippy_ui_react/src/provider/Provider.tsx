@@ -59,7 +59,13 @@ export default class Provider extends Component<ProviderProps, ProviderState> {
   // 监听系统后退事件，关闭全局View
   backToCloseGlobalView = () => {
     const globalViewKeys = this.getGlobalView();
-    const closeView = globalViewKeys.findLast((v) => v.onBackToClose);
+    let closeView;
+    for (let i = globalViewKeys.length - 1; i >= 0; i--) {
+      if (globalViewKeys[i].onBackToClose) {
+        closeView = globalViewKeys[i];
+        break;
+      }
+    }
     if (closeView) {
       return closeView.onBackToClose();
     }
