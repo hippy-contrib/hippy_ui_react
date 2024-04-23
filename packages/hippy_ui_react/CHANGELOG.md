@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.7](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react@1.1.6...hippy_ui_react@1.1.7) (2024-04-23)
+
+
+### Bug Fixes
+
+* provider findlast ([6f68e20](https://github.com/hippy-contrib/hippy_ui_react/commit/6f68e209b667553ed7f156a51631ec09531eebcc))
+
+
+
+
+
 ## [1.1.6](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react@1.1.5...hippy_ui_react@1.1.6) (2024-04-23)
 
 
