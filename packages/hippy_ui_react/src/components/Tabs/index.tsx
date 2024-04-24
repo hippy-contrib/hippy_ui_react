@@ -241,12 +241,12 @@ export class Tabs extends Component<TabsProps, TabsState> {
     if (offset !== null) {
       let scrollX;
       if (typeof offset === 'number') {
-        scrollX = itemLayout.layout.x + (this.itemStyleMap[index].paddingLeft || 0) + offset;
+        scrollX = itemLayout.layout.x + (this.itemStyleMap[index]?.paddingLeft || 0) + offset;
       } else {
         // 居中
         scrollX =
           itemLayout.layout.x -
-          (this.itemStyleMap[index].paddingRight || 0 - this.itemStyleMap[index].paddingLeft || 0) / 2 -
+          (this.itemStyleMap[index]?.paddingRight || 0 - this.itemStyleMap[index]?.paddingLeft || 0) / 2 -
           (this.layoutWrap.layout.width - itemLayout.layout.width) / 2;
       }
       const maxX = contentWidth - this.layoutWrap.layout.width;
