@@ -48,6 +48,12 @@ export class Tabs extends Component<TabsProps, TabsState> {
     return true;
   }
 
+  componentDidUpdate(prevProps: Readonly<TabsProps>, prevState: Readonly<TabsState>, snapshot?: any) {
+    if (prevProps.activeIndex !== this.props.activeIndex && this.props.activeIndex !== this.state.activeIndex) {
+      this.setIndex(this.props.activeIndex);
+    }
+  }
+
   componentWillUnmount() {
     this.hasMount = false;
   }
