@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.9](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react@1.1.8...hippy_ui_react@1.1.9) (2024-04-24)
+
+
+### Bug Fixes
+
+* tabs itemStyleMap ([57a93ce](https://github.com/hippy-contrib/hippy_ui_react/commit/57a93cee9a3b3c5e049922ba4222d9f3351944c7))
+
+
+
+
+
 ## [1.1.8](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react@1.1.7...hippy_ui_react@1.1.8) (2024-04-24)
 
 
