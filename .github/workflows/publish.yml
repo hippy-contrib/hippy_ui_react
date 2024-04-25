@@ -19,9 +19,6 @@ jobs:
           npm install yarn -g
           yarn
 
-      - name: Bootstrap Lerna Project
-        run: npx lerna bootstrap
-
       - name: Publish to NPM
         run: |
           yarn build
