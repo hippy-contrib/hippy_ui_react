@@ -22,13 +22,13 @@ export class Tabs extends Component<TabsProps, TabsState> {
       isEquallyDivide: false,
       imgSizeMap: {},
     };
-    props.autoScroll &&
-      this.state.activeIndex &&
+    ((props.autoScroll && this.state.activeIndex) || props.initAutoScroll) &&
       this.props.initialContentOffset === undefined &&
       (this.needInitScroll = {
         index: this.state.activeIndex,
         ...Tabs.defaultProps.autoScroll,
         ...(props.autoScroll as any),
+        ...props.initAutoScroll,
       });
     this.initTabsImage(props);
   }

@@ -1,0 +1,30 @@
+name: Publish Project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+
+      - name: Install Dependencies
+        run: |
+          npm install yarn -g
+          yarn
+
+      - name: Bootstrap Lerna Project
+        run: npx lerna bootstrap
+
+      - name: Publish to NPM
+        run: |
+          yarn build
+          npx lerna publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
