@@ -30,3 +30,6 @@ jobs:
           npx lerna publish -y
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish Doc
+        run: yarn doc:publish
