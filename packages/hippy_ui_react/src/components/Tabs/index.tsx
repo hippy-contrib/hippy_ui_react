@@ -28,7 +28,7 @@ export class Tabs extends Component<TabsProps, TabsState> {
         index: this.state.activeIndex,
         ...Tabs.defaultProps.autoScroll,
         ...(props.autoScroll as any),
-        ...props.initAutoScroll,
+        ...(props.initAutoScroll as any),
       });
     this.initTabsImage(props);
   }
