@@ -14,6 +14,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Configure git user and email
+        run: |
+          git config --global user.name "jinzelin"
+          git config --global user.email "jinzelin@tencent.com"
+
       - name: Install Dependencies
         run: |
           npm install yarn -g
