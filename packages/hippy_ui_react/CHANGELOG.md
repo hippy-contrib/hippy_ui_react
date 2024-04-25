@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.10](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react@1.1.9...hippy_ui_react@1.1.10) (2024-04-25)
+
+
+### Bug Fixes
+
+* tabs add initAutoScroll ([cbde6f3](https://github.com/hippy-contrib/hippy_ui_react/commit/cbde6f32e9c94c05100e40365a1fae888942738f))
+* tabs initAutoScroll ([12812f6](https://github.com/hippy-contrib/hippy_ui_react/commit/12812f60e5d36a0c79359c070123ff9fda8116d3))
+
+
+
+
+
 ## [1.1.9](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react@1.1.8...hippy_ui_react@1.1.9) (2024-04-24)
 
 
