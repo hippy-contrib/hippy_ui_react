@@ -42,7 +42,7 @@ export interface TabsProps {
   badgeList?: Array<{ index: number; badgeProps?: BadgeProps; view?: ReactNode }>;
   /** 选中后自动滚动定位（params.offset: `center`表示居中，数值表示选中项与左边框的距离） */
   autoScroll?: Omit<ScrollIndexParams, 'index'> | boolean;
-  /** 初始自动滚动定位，优先级大于`autoScroll`小于`initialContentOffset` */
+  /** 初始自动滚动定位，优先级大于`autoScroll`，小于`initialContentOffset` */
   initAutoScroll?: Partial<ScrollIndexParams> | boolean;
   /** 显示下划线 */
   showUnderline?: boolean;

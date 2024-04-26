@@ -31,5 +31,12 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: build Doc
+        run: yarn doc:build
       - name: Publish Doc
-        run: yarn doc:publish
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: docs
+          FOLDER: docs
+          CLEAN: true
