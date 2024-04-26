@@ -19,6 +19,11 @@ jobs:
           git config --global user.name "jinzelin"
           git config --global user.email "jinzelin@tencent.com"
 
+      - name: Login to NPM
+        run: npm login --registry=https://registry.npmjs.org
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Install Dependencies
         run: |
           npm install yarn -g
@@ -29,7 +34,7 @@ jobs:
           yarn build
           npx lerna publish -y
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish Doc
         run: yarn doc:publish
