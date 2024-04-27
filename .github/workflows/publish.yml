@@ -25,7 +25,8 @@ jobs:
       - name: Publish to NPM
         run: |
           yarn build
-          npx lerna publish from-package -y
+          echo $NPM_TOKEN
+          npx lerna publish from-package --loglevel -y
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
