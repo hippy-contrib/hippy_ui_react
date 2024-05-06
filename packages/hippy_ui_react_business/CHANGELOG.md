@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.6 (2024-05-06)
+
+
+### Bug Fixes
+
+* hruEvent ([b6ab7d5](https://github.com/hippy-contrib/hippy_ui_react/commit/b6ab7d5f24719c005a760cdadf0565903a410cc7))
+
+
+
+
+
 ## 1.1.5 (2024-04-26)
 
 
