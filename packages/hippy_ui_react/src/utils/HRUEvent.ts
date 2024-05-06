@@ -1,4 +1,14 @@
-const _global = (globalThis || global || window) as any;
+let _global = {} as any;
+try {
+  _global = globalThis;
+} catch (e) {
+  try {
+    _global = global;
+  } catch (e) {
+    _global = window;
+  }
+}
+
 _global._HRUEvents = _global._HRUEvents || {};
 
 export function on(type: string, callback: Function) {
