@@ -27,13 +27,13 @@
 - 可配置文本，若超过 12 个汉字长度，建议使用弹窗并进行二次确认
 
 ```js
-<Toast duration={0} text="相亲申请已提交，上麦成功支付20钻石" />
+<Toast duration={0} text="警告：删除此条目会导致无法恢复，请谨慎操作" />
 ```
 
 ## 自定义内容
 
 ```js
-<Toast duration={0}>
-  <HiText theme={ThemeMode.dark}>{"自定义Node"}</HiText>
+<Toast duration={0} style={{marginTop: 200}}>
+  <HiText theme={ThemeMode.dark}>{"位置偏下，自定义Node"}</HiText>
 </Toast>
 ```

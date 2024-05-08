@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { GenericStyleProp, Style } from '@hippy/react';
 
 export interface ToastProps {
   /** 是否显示 */
@@ -13,6 +14,8 @@ export interface ToastProps {
   onHide?: () => void;
   /** 子节点 */
   children?: ReactNode;
+  /** 自定义窗口样式（文字样式会被透传下去） */
+  style?: GenericStyleProp<Style>;
 }
 
 export interface ToastState {
