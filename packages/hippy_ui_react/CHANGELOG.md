@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.19 (2024-05-08)
+
+
+### Bug Fixes
+
+* toast支持style ([4b8cb1d](https://github.com/hippy-contrib/hippy_ui_react/commit/4b8cb1d3daee851306e0de003f25bc13fe87786f))
+
+
+
+
+
 ## 1.1.18 (2024-05-06)
 
 
