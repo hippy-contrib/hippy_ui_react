@@ -77,16 +77,29 @@ export const listItemConfig: ThemeConfigListItem = {
       },
     };
   },
-  listItemTitlePropsFn: () => {
-    return {
-      numberOfLines: 1,
-      style: {
-        fontSize: 16,
-        flex: 1,
-        flexShrink: 1,
-        height: 20,
-      },
-    };
+  listItemTitlePropsFn: (params) => {
+    const {
+      props: { titleNoHeight },
+    } = params;
+    return titleNoHeight
+      ? {
+          numberOfLines: 1,
+          style: {
+            fontSize: 16,
+            flex: 1,
+            flexShrink: 1,
+            lineHeight: undefined,
+          },
+        }
+      : {
+          numberOfLines: 1,
+          style: {
+            fontSize: 16,
+            flex: 1,
+            flexShrink: 1,
+            height: 20,
+          },
+        };
   },
   listItemNotePropsFn: (params) => {
     const { consumerValue } = params;

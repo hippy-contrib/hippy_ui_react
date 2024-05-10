@@ -1,5 +1,5 @@
 import React, { isValidElement, cloneElement, ReactElement } from 'react';
-import { TextStyle, ViewStyle } from '@hippy/react';
+import { ViewStyle } from '@hippy/react';
 import { ListItemRenderInfo, ListItemRenderParams } from '../../themeConfig/types/listItem';
 import { transferStyle } from '../../utils/Styles';
 import { isNullOrUndefined, replenishNum } from '../../utils/Utils';
@@ -26,7 +26,6 @@ export default function getRenderInfo(params: ListItemRenderParams): ListItemRen
     thumb,
     rank,
     buttonProps,
-    titleNoHeight,
   } = props;
   const wrapProps = themeConfig.listItemWrapPropsFn(params);
   const rankProps = themeConfig.listItemRankPropsFn(params);
@@ -34,10 +33,6 @@ export default function getRenderInfo(params: ListItemRenderParams): ListItemRen
   const titleProps = themeConfig.listItemTitlePropsFn(params);
   const noteProps = themeConfig.listItemNotePropsFn(params);
   const moreNoteProps = themeConfig.listItemMoreNotePropsFn(params);
-
-  if (titleNoHeight) {
-    delete (titleProps.style as TextStyle).height;
-  }
 
   const result: ListItemRenderInfo = {
     wrapProps: {
