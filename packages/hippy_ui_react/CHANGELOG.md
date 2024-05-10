@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.21 (2024-05-10)
+
+
+### Bug Fixes
+
+* UImage ([2d722d2](https://github.com/hippy-contrib/hippy_ui_react/commit/2d722d2458a9e12cb5c7029812443972d1ff1a85))
+
+
+
+
+
 ## 1.1.20 (2024-05-10)
 
 
