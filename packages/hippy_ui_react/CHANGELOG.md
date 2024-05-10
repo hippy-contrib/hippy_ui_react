@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.20 (2024-05-10)
+
+
+### Bug Fixes
+
+* ListItem titleNoHeight ([081594e](https://github.com/hippy-contrib/hippy_ui_react/commit/081594e20db4be40a93843db431b9de29f81c346))
+
+
+
+
+
 ## 1.1.19 (2024-05-08)
 
 
