@@ -37,5 +37,5 @@ export default function getRenderInfo(params: UImageRenderParams): UImageRenderI
     }
   }
 
-  return renderInfo?.uImage({ ...params, defaultRenderInfo: result }) || result;
+  return renderInfo?.uImage?.({ ...params, defaultRenderInfo: result }) || result;
 }
