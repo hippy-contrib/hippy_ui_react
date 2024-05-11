@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Platform } from '@hippy/react';
 
 /**
@@ -39,7 +40,23 @@ export class Throttle<T extends any[]> {
     }
   };
 }
+/**
+ * 工具：节流-hook
+ * */
+export function useThrottle<T extends any[]>(fn: (...args: T) => void, delay = 300, atBegin = true) {
+  const { current } = useRef(new Throttle(fn, delay, atBegin));
 
+  useEffect(() => {
+    current.replaceFn(fn);
+  }, [fn]);
+
+  useEffect(() => {
+    return () => {
+      current.cancel();
+    };
+  }, []);
+  return current;
+}
 /**
  * 工具：防抖
  * */
@@ -81,9 +98,24 @@ export class Debounce<T extends any[]> {
     }
   };
 }
+/**
+ * 工具：防抖-hook
+ * */
+export function useDebounce<T extends any[]>(fn: (...args: T) => void, delay = 300, atBegin = false) {
+  const { current } = useRef(new Debounce(fn, delay, atBegin));
+  useEffect(() => {
+    current.replaceFn(fn);
+  }, [fn]);
+  useEffect(() => {
+    return () => {
+      current.cancel();
+    };
+  }, []);
+  return current;
+}
 
 /**
- * 工具：版本比较
+ * 工具：版本比较（返回a <= b）
  * */
 export function versionCompare(target: string, current: string) {
   const targetArr = target.split('.');
