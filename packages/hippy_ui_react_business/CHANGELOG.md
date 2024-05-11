@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.11 (2024-05-11)
+
+
+### Bug Fixes
+
+* swiper onlayout ([91b5822](https://github.com/hippy-contrib/hippy_ui_react/commit/91b58227dfcea9dd8f9c271fe7ff4d13e6b41a89))
+
+
+
+
+
 ## 1.1.10 (2024-05-11)
 
 
