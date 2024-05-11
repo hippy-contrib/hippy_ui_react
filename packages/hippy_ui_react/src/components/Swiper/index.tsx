@@ -426,7 +426,7 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
   };
 
   render() {
-    const { style, scrollEnabled, autoScrollWidth, onScrollBeginDrag, onScrollEndDrag } = this.props;
+    const { style, scrollEnabled, autoScrollWidth, onScrollBeginDrag, onScrollEndDrag, onLayout } = this.props;
     return (
       <>
         <ScrollView
@@ -435,6 +435,7 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
             this.refWrap = c;
           }}
           onLayout={(e) => {
+            onLayout?.(e);
             this.wrapWidth = e.layout.width;
           }}
           horizontal={true}

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ViewStyle, GenericStyleProp } from '@hippy/react';
+import { ViewStyle, GenericStyleProp, LayoutEvent } from '@hippy/react';
 import { IndicatorProps } from '../Indicator/PropsType';
 
 export interface ScrollEvent {
@@ -21,6 +21,8 @@ export interface SwiperProps {
   children: ReactNode[];
   /** 页码改变时会触发 change 事件 */
   onChange?: (index: number) => void;
+  /** 布局回调事件 */
+  onLayout?: (layoutEvent: LayoutEvent) => void;
   /** 开始拖拽时触发 事件 */
   onScrollBeginDrag?: (event?: ScrollEvent) => void;
   /** 结束拖拽时触发 事件 */
