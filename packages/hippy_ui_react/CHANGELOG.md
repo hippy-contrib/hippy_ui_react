@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.25 (2024-05-14)
+
+
+### Bug Fixes
+
+* hiText ([ab3b9ee](https://github.com/hippy-contrib/hippy_ui_react/commit/ab3b9ee9344e4ffb4ee8347012ee15f2e4bf14ef))
+
+
+
+
+
 ## 1.1.24 (2024-05-14)
 
 
