@@ -24,7 +24,7 @@ export default function getRenderInfo(params: ToastRenderParams): ToastRenderInf
   if (pointerEvents !== 'none') {
     result.maskProps.onClick = () => {};
   }
-  return renderInfo?.toast({ ...params, defaultRenderInfo: result }) || result;
+  return renderInfo?.toast?.({ ...params, defaultRenderInfo: result }) || result;
 }
 
 /** Toast：获取渲染样式 */
