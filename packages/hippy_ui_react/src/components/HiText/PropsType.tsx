@@ -27,4 +27,8 @@ export interface HiTextProps extends TextProps {
   textAlign?: TextStyle['textAlign'];
   /** 主题模式 */
   theme?: ThemeMode;
+  /** 无障碍开关 */
+  accessible?: boolean;
+  /** 无障碍阅读文本 */
+  accessibilityLabel?: string;
 }
