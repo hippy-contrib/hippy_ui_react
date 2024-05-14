@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.12 (2024-05-14)
+
+
+### Bug Fixes
+
+* toast renderInfo ([1e44384](https://github.com/hippy-contrib/hippy_ui_react/commit/1e443842850aaa95a7a18a5c25d2567e2cb8a58c))
+
+
+
+
+
 ## 1.1.11 (2024-05-11)
 
 
