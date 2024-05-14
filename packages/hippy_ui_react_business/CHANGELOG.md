@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.14 (2024-05-14)
+
+
+### Bug Fixes
+
+* tabs key ([eb3e2a0](https://github.com/hippy-contrib/hippy_ui_react/commit/eb3e2a073b017389dd3d6fff472832d899597c38))
+
+
+
+
+
 ## 1.1.13 (2024-05-14)
 
 
