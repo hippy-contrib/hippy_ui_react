@@ -289,6 +289,7 @@ export class Tabs extends Component<TabsProps, TabsState> {
     const textStyle = pickTextStyle(tabStyle);
     this.itemStyleMap[index] = tabStyle;
     const tabProps = {
+      key: index,
       ...renderTabProps,
       style: tabStyle,
       onLayout: (e) => {
