@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.29 (2024-05-15)
+
+
+### Bug Fixes
+
+* modal ([da635f4](https://github.com/hippy-contrib/hippy_ui_react/commit/da635f45b6dfe200199476aca75e1adc1d160385))
+
+
+
+
+
 ## 1.1.28 (2024-05-15)
 
 
