@@ -2,10 +2,10 @@ import React from 'react';
 import { ThemeConfigModal } from './types/modal';
 import { Image, PixelRatio } from '@hippy/react';
 import { WINDOW_WIDTH } from '../utils/Dimensions';
-import HiText from '../components/HiText';
 import { ModalCloseType } from '../components/Modal/PropsType';
 import { ButtonType } from '../components/Button/PropsType';
 import { ThemeMode } from './index';
+import { HiTextWeight, HiTextColor } from '../components/HiText/PropsType';
 
 /**
  * Modal 组件
@@ -25,7 +25,7 @@ export const modalConfig: ThemeConfigModal = {
   },
   modalTitleProps: {
     size: 17,
-    weight: HiText.weight.bold,
+    weight: HiTextWeight.bold,
     style: {
       textAlign: 'center',
     },
@@ -97,9 +97,9 @@ export const modalConfig: ThemeConfigModal = {
     },
   },
   modalFooterDefaultTxtConfirmProps: {
-    weight: HiText.weight.bold,
+    weight: HiTextWeight.bold,
     size: 16,
-    color: HiText.color.theme,
+    color: HiTextColor.theme,
   },
   modalFooterDefaultTxtCancelProps: {
     size: 16,
@@ -142,8 +142,8 @@ export const modalConfig: ThemeConfigModal = {
     style: { marginHorizontal: 64 },
   },
   modalFooterVerticalTxtConfirmProps: {
-    color: HiText.color.theme,
-    weight: HiText.weight.bold,
+    color: HiTextColor.theme,
+    weight: HiTextWeight.bold,
     size: 16,
   },
   modalFooterVerticalTxtCancelProps: {
