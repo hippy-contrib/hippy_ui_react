@@ -6,6 +6,10 @@ export interface PopupProps {
   style?: GenericStyleProp<ViewStyle>;
   /** 蒙层样式 */
   maskStyle?: GenericStyleProp<ViewStyle>;
+  /** 遮罩无障碍阅读开关 */
+  maskAccessible?: boolean;
+  /** 遮罩无障碍阅读文本 */
+  maskAccessibilityLabel?: string;
   /** 点击蒙层事件 */
   onMaskClick?: () => void | boolean;
   /** 半屏完全展示通知 */

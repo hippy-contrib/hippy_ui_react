@@ -106,7 +106,7 @@ export class Popup extends Component<PopupProps, PopupState> {
     return (
       <Consumer>
         {(consumerValue) => {
-          const { children, maskStyle, onMaskClick, animated } = this.props;
+          const { children, maskStyle, onMaskClick, animated, maskAccessible, maskAccessibilityLabel } = this.props;
           const { isShow } = this.state;
           const { mainProps } = getRenderInfo({ consumerValue, props: this.props });
 
@@ -114,8 +114,8 @@ export class Popup extends Component<PopupProps, PopupState> {
             <Mask
               style={maskStyle}
               onClick={onMaskClick}
-              accessible={onMaskClick ? true : undefined}
-              accessibilityLabel={onMaskClick ? '关闭' : undefined}
+              accessible={maskAccessible}
+              accessibilityLabel={maskAccessibilityLabel}
             >
               <View
                 style={transferStyle([
