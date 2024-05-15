@@ -21,6 +21,7 @@ export class Popup extends Component<PopupProps, PopupState> {
 
   static defaultProps = {
     animated: true,
+    onMaskClick: () => {},
   };
 
   constructor(props: PopupProps) {
