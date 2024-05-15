@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.27 (2024-05-15)
+
+
+### Bug Fixes
+
+* popup onMaskClick ([c142f1a](https://github.com/hippy-contrib/hippy_ui_react/commit/c142f1a5741a96b13e307696b22155bf585a0032))
+
+
+
+
+
 ## 1.1.26 (2024-05-14)
 
 
