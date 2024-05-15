@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.28 (2024-05-15)
+
+
+### Bug Fixes
+
+* popup ([15b916f](https://github.com/hippy-contrib/hippy_ui_react/commit/15b916fd44d263a0c03d825a51d9dc20f7d5a912))
+
+
+
+
+
 ## 1.1.27 (2024-05-15)
 
 
