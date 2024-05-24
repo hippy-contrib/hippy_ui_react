@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.19 (2024-05-24)
+
+
+### Bug Fixes
+
+* button ([396f225](https://github.com/hippy-contrib/hippy_ui_react/commit/396f225ff08d13f20a4a4f7344de92e7914f3081))
+
+
+
+
+
 ## 1.1.18 (2024-05-17)
 
 
