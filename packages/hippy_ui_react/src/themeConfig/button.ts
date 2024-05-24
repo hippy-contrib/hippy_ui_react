@@ -42,8 +42,8 @@ export const buttonConfig: ThemeConfigButton = {
       wrapperStyle = transferStyle([
         wrapperStyle,
         {
-          borderRadius: 3.6,
-          height: 36,
+          borderRadius: 4,
+          height: 40,
           paddingLeft: 32,
           paddingRight: 32,
         },
@@ -57,8 +57,8 @@ export const buttonConfig: ThemeConfigButton = {
       wrapperStyle = transferStyle([
         wrapperStyle,
         {
-          borderRadius: 4,
-          height: 40,
+          borderRadius: 3.6,
+          height: 36,
           paddingLeft: 32,
           paddingRight: 32,
         },
