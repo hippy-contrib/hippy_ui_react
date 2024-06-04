@@ -1,14 +1,15 @@
 import React, { isValidElement } from 'react';
-import { BadgeRenderInfo, BadgeRenderParams } from '../../themeConfig/types/badge';
+import { BadgeRenderInfo, BadgeRenderParams, badgeConfig } from './config';
 import { transferStyle } from '../../utils/Styles';
 import HiText from '../HiText';
 
 /** Badge：获取渲染信息 */
 export default function getRenderInfo(params: BadgeRenderParams): BadgeRenderInfo {
   const {
-    consumerValue: { renderInfo, themeConfig },
+    consumerValue: { renderInfo, themeConfig: _themeConfig },
     props: { style, value, isDot = value === undefined, maxValue, children, wrapStyle },
   } = params;
+  const themeConfig = { ...badgeConfig, ..._themeConfig };
 
   let badgeStyle;
   let badgeText;

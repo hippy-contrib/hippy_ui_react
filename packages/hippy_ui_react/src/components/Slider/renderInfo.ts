@@ -1,10 +1,10 @@
-import { SliderRenderParams, SliderRenderInfo } from '../../themeConfig/types/slider';
+import { SliderRenderParams, SliderRenderInfo, sliderConfig } from './config';
 import { transferStyle } from '../../utils/Styles';
 
 /** Slider：获取渲染信息 */
 export default function getRenderInfo(params: SliderRenderParams): SliderRenderInfo {
   const {
-    consumerValue: { renderInfo, themeConfig },
+    consumerValue: { renderInfo, themeConfig: _themeConfig },
     props: {
       disabled,
       lineColor,
@@ -18,6 +18,7 @@ export default function getRenderInfo(params: SliderRenderParams): SliderRenderI
       blockImage = '',
     },
   } = params;
+  const themeConfig = { ...sliderConfig, ..._themeConfig };
   const { sliderWrapStyle, sliderLineStyle, sliderActiveLineStyle, sliderBlockStyle, sliderBlockImageStyle } =
     themeConfig;
   const _style = transferStyle(style);

@@ -1,5 +1,12 @@
 import { BackAndroid, Platform } from '@hippy/react';
-import { ThemeConfigCommon } from './types/common';
+
+/** 主题配置：通用 */
+export interface ThemeConfigCommon {
+  commonListenActiveAdd?: (callBack: (active: boolean) => void) => void;
+  commonListenActiveRemove?: (callBack: (active: boolean) => void) => void;
+  commonListenBackAdd?: (callBack: () => boolean) => void;
+  commonListenBackRemove?: (callBack: () => boolean) => void;
+}
 
 /**
  * Common 通用配置

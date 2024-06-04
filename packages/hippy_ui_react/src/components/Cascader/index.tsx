@@ -5,7 +5,7 @@ import { isWeb } from '../../utils/Utils';
 import HiText from '../HiText';
 import Consumer from '../../provider/Consumer';
 import getRenderInfo from './renderInfo';
-import { CascaderRenderInfo } from '../../themeConfig/types/cascader';
+import { CascaderRenderInfo } from './config';
 import ScrollView from '../../elements/ScrollView';
 
 /**

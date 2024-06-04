@@ -1,5 +1,5 @@
-import { ThemeConfigCommon } from '../themeConfig/types/common';
-import { ThemeConfig } from '../themeConfig/types';
+import { ThemeConfigCommon } from '../themeConfig/common';
+import { ThemeConfig } from '../themeConfig/index';
 
 // 全局通用配置
 export const ConfigCommon: ThemeConfigCommon = {};

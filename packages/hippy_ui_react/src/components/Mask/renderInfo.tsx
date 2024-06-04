@@ -1,15 +1,16 @@
 import React from 'react';
 import { Platform, View } from '@hippy/react';
-import { MaskRenderInfo, MaskRenderParams } from '../../themeConfig/types/mask';
+import { MaskRenderInfo, MaskRenderParams, maskConfig } from './config';
 import { transferStyle, UtilStyles } from '../../utils/Styles';
 import { MaskProps } from './PropsType';
 
 /** Mask：获取渲染信息 */
 export default function getRenderInfo(params: MaskRenderParams): MaskRenderInfo {
   const {
-    consumerValue: { themeConfig, renderInfo },
+    consumerValue: { themeConfig: _themeConfig, renderInfo },
     props,
   } = params;
+  const themeConfig = { ...maskConfig, ..._themeConfig };
   // ios外层无障碍设置会阻断里面，这里拆出一个View
   const { accessible, accessibilityLabel, style, ...viewProps } = props as MaskProps;
   const isIos = Platform.OS === 'ios';

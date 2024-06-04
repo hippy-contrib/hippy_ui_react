@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { TextStyle } from '@hippy/react';
-import { HiTextRenderParams, HiTextRenderInfo } from '../../themeConfig/types/hiText';
+import { HiTextRenderParams, HiTextRenderInfo, hiTextConfig } from './config';
 import { transferStyle } from '../../utils/Styles';
 import { HiTextColor } from './PropsType';
 import { isWeb } from '../../utils/Utils';
@@ -9,11 +9,12 @@ import HiText from './index';
 /** HiText：获取渲染信息 */
 export default function getRenderInfo(params: HiTextRenderParams): HiTextRenderInfo {
   const {
-    consumerValue: { renderInfo, themeConfig },
+    consumerValue: { renderInfo, themeConfig: _themeConfig },
     props,
   } = params;
   const { theme, size, weight, lineHeight, color, textAlign, children, ...textProps } = props;
 
+  const themeConfig = { ...hiTextConfig, ..._themeConfig };
   const { textStyle } = getStyles(params);
   const child = renderChildren(children);
 
@@ -41,9 +42,10 @@ function renderChildren(children: ReactNode): ReactNode {
 /** HiText：获取样式信息 */
 function getStyles(params: HiTextRenderParams) {
   const {
-    consumerValue: { themeConfig },
+    consumerValue: { themeConfig: _themeConfig },
     props,
   } = params;
+  const themeConfig = { ...hiTextConfig, ..._themeConfig };
   const {
     size = themeConfig.hiTextSizeDefault,
     color = HiTextColor.textBase,

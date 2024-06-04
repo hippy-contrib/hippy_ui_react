@@ -4,7 +4,7 @@ import { isWeb } from '../../utils/Utils';
 import { LoadingGifProps, LoadingGifState } from './PropsType';
 import Consumer from '../../provider/Consumer';
 import { transferStyle } from '../../utils/Styles';
-import { ThemeConfigLoadingGif } from '../../themeConfig/types/loadingGif';
+import { ThemeConfigLoadingGif, loadingGifConfig } from './config';
 import { getElementFromFiberRef, HippyElement } from '../../utils/Polyfill';
 import { ConfigCommon } from '../../provider/ConfigCommon';
 
@@ -200,12 +200,14 @@ class LoadingGif extends Component<LoadingGifProps, LoadingGifState> {
     return (
       <Consumer>
         {(consumerValue) => {
+          const { themeConfig: _themeConfig } = consumerValue;
           const { onPress, style } = this.props;
           const { myPercent } = this.state;
+          const themeConfig = { ...loadingGifConfig, ..._themeConfig };
           const List = new Array(ITEM_NUMBER).fill(0);
           this.config = {
-            loadingGifItemColor: consumerValue.themeConfig.loadingGifItemColor,
-            loadingGifItemActiveColor: consumerValue.themeConfig.loadingGifItemActiveColor,
+            loadingGifItemColor: themeConfig.loadingGifItemColor,
+            loadingGifItemActiveColor: themeConfig.loadingGifItemActiveColor,
           };
           return (
             <View

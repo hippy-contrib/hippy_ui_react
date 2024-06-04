@@ -1,15 +1,16 @@
 import React from 'react';
 import { View } from '@hippy/react';
-import { IndicatorRenderParams, IndicatorRenderInfo } from '../../themeConfig/types/indicator';
+import { IndicatorRenderParams, IndicatorRenderInfo, indicatorConfig } from './config';
 import { transferStyle } from '../../utils/Styles';
 
 /** Indicator：获取渲染信息 */
 export default function getRenderInfo(params: IndicatorRenderParams): IndicatorRenderInfo {
   const {
-    consumerValue: { renderInfo, themeConfig },
+    consumerValue: { renderInfo, themeConfig: _themeConfig },
     props: { style, activeIndex, dotStyle, activeStyle, length },
   } = params;
 
+  const themeConfig = { ...indicatorConfig, ..._themeConfig };
   const result: IndicatorRenderInfo = {
     wrapProps: {
       ...themeConfig.indicatorWrapProps,

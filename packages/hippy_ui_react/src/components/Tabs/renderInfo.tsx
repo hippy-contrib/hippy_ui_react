@@ -1,6 +1,6 @@
 import React, { isValidElement } from 'react';
 import { View, ViewStyle } from '@hippy/react';
-import { TabsRenderParams, TabsRenderInfo } from '../../themeConfig/types/tabs';
+import { TabsRenderParams, TabsRenderInfo, tabsConfig } from './config';
 import { transferStyle, UtilStyles } from '../../utils/Styles';
 import Badge from '../Badge';
 import Tabs from './index';
@@ -8,11 +8,12 @@ import Tabs from './index';
 /** Tabs：获取渲染信息 */
 export default function getRenderInfo(params: TabsRenderParams): TabsRenderInfo {
   const {
-    consumerValue: { renderInfo, themeConfig },
+    consumerValue: { renderInfo, themeConfig: _themeConfig },
     state: { activeIndex },
     props: { values, style, itemStyleFn, activeStyleFn, underlineStyleFn, badgeList, initialContentOffset },
   } = params;
 
+  const themeConfig = { ...tabsConfig, ..._themeConfig };
   const result: TabsRenderInfo = {
     wrapProps: {
       ...themeConfig.tabsProps,

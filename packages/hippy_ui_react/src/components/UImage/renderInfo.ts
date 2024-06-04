@@ -1,15 +1,16 @@
-import { UImageRenderInfo, UImageRenderParams } from '../../themeConfig/types/uImage';
+import { UImageRenderInfo, UImageRenderParams, uImageConfig } from './config';
 import { isWeb } from '../../utils/Utils';
 import { transferStyle } from '../../utils/Styles';
 
 /** UImage：获取渲染信息 */
 export default function getRenderInfo(params: UImageRenderParams): UImageRenderInfo {
   const {
-    consumerValue: { themeConfig, renderInfo },
+    consumerValue: { themeConfig: _themeConfig, renderInfo },
     props: { src, defaultImage, accessible, accessibilityLabel, style, onLayout, resizeMode, onPress },
     state: { isError },
   } = params;
 
+  const themeConfig = { ...uImageConfig, ..._themeConfig };
   const imgDefaultSrc = defaultImage || themeConfig.uImageDefaultSrcFn(params);
   const imgSrc = src || imgDefaultSrc;
 

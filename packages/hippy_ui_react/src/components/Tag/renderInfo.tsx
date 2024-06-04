@@ -1,15 +1,16 @@
 import React, { isValidElement } from 'react';
-import { TagRenderParams, TagRenderInfo } from '../../themeConfig/types/tag';
+import { TagRenderParams, TagRenderInfo, tagConfig } from './config';
 import { pickTextStyle, transferStyle } from '../../utils/Styles';
 import HiText from '../HiText';
 
 /** Tag：获取渲染信息 */
 export default function getRenderInfo(params: TagRenderParams): TagRenderInfo {
   const {
-    consumerValue: { renderInfo, themeConfig },
+    consumerValue: { renderInfo, themeConfig: _themeConfig },
     props: { style: userStyle, accessible, accessibilityLabel, children, onPress, maxLength },
   } = params;
 
+  const themeConfig = { ...tagConfig, ..._themeConfig };
   const style = transferStyle([themeConfig.tagStyle, themeConfig.tagTypeStyleFn(params), userStyle]);
   const txtStyle = pickTextStyle(style);
   const result: TagRenderInfo = {

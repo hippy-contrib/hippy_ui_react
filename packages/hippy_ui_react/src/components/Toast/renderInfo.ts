@@ -1,5 +1,5 @@
 import { TextStyle, ViewStyle } from '@hippy/react';
-import { ToastRenderInfo, ToastRenderParams } from '../../themeConfig/types/toast';
+import { ToastRenderInfo, ToastRenderParams, toastConfig } from './config';
 import { pickTextStyle, transferStyle, UtilStyles } from '../../utils/Styles';
 
 /** Toast：获取渲染信息 */
@@ -30,10 +30,11 @@ export default function getRenderInfo(params: ToastRenderParams): ToastRenderInf
 /** Toast：获取渲染样式 */
 function getStyles(params: ToastRenderParams) {
   const {
-    consumerValue: { themeConfig },
+    consumerValue: { themeConfig: _themeConfig },
     props: { style },
   } = params;
 
+  const themeConfig = { ...toastConfig, ..._themeConfig };
   const maskStyle: ViewStyle = {
     ...UtilStyles.mask,
     justifyContent: 'center',

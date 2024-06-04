@@ -1,13 +1,14 @@
-import { MarqueeRenderInfo, MarqueeRenderParams } from '../../themeConfig/types/marquee';
+import { MarqueeRenderInfo, MarqueeRenderParams, marqueeConfig } from './config';
 import { transferStyle } from '../../utils/Styles';
 
 /** Marquee：获取渲染信息 */
 export default function getRenderInfo(params: MarqueeRenderParams): MarqueeRenderInfo {
   const {
-    consumerValue: { themeConfig, renderInfo },
+    consumerValue: { themeConfig: _themeConfig, renderInfo },
     props: { style, onPress },
     shouldLoop,
   } = params;
+  const themeConfig = { ...marqueeConfig, ..._themeConfig };
   const verticalWrapStyle = transferStyle([themeConfig.marqueeVerticalProps.style, style]);
   const horizontalWrapStyle = transferStyle([themeConfig.marqueeHorizontalProps.style, style]);
   const result: MarqueeRenderInfo = {

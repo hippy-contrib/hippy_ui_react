@@ -1,14 +1,15 @@
 import React, { isValidElement } from 'react';
-import { ModalRenderInfo, ModalRenderParams } from '../../themeConfig/types/modal';
+import { ModalRenderInfo, ModalRenderParams, modalConfig } from './config';
 import { transferStyle } from '../../utils/Styles';
 import HiText from '../HiText';
 
 /** Modal：获取渲染信息 */
 export default function getRenderInfo(params: ModalRenderParams): ModalRenderInfo {
   const {
-    consumerValue: { themeConfig, renderInfo },
+    consumerValue: { themeConfig: _themeConfig, renderInfo },
     props: { maskStyle, title, style, header, content, cancelText },
   } = params;
+  const themeConfig = { ...modalConfig, ..._themeConfig };
   const result: ModalRenderInfo = {
     modalProps: {
       ...themeConfig.modalProps,

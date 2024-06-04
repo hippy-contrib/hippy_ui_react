@@ -1,6 +1,6 @@
 import React, { isValidElement, cloneElement, ReactElement } from 'react';
 import { ViewStyle } from '@hippy/react';
-import { ListItemRenderInfo, ListItemRenderParams } from '../../themeConfig/types/listItem';
+import { ListItemRenderInfo, ListItemRenderParams, listItemConfig } from './config';
 import { transferStyle } from '../../utils/Styles';
 import { isNullOrUndefined, replenishNum } from '../../utils/Utils';
 import HiText from '../HiText';
@@ -9,7 +9,7 @@ import UImage from '../UImage';
 /** ListItem：获取渲染信息 */
 export default function getRenderInfo(params: ListItemRenderParams): ListItemRenderInfo {
   const {
-    consumerValue: { renderInfo, themeConfig },
+    consumerValue: { renderInfo, themeConfig: _themeConfig },
     props,
   } = params;
   const {
@@ -27,6 +27,7 @@ export default function getRenderInfo(params: ListItemRenderParams): ListItemRen
     rank,
     buttonProps,
   } = props;
+  const themeConfig = { ...listItemConfig, ..._themeConfig };
   const wrapProps = themeConfig.listItemWrapPropsFn(params);
   const rankProps = themeConfig.listItemRankPropsFn(params);
   const thumbProps = themeConfig.listItemThumbPropsFn(params);

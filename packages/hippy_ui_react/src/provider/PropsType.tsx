@@ -1,6 +1,6 @@
 import { createContext, ReactElement, ReactNode } from 'react';
 import { ThemeMode } from '../themeConfig';
-import { getThemeConfigFunction, RenderInfoFunc, ThemeConfig } from '../themeConfig/types';
+import { getThemeConfigFunction, RenderInfoFunc, ThemeConfig } from '../themeConfig/index';
 import { ViewProps } from '@hippy/react';
 
 /** Provider */

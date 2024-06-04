@@ -1,6 +1,6 @@
 import React from 'react';
 import { ViewStyle } from '@hippy/react';
-import { LoadingRenderParams, LoadingRenderInfo } from '../../themeConfig/types/loading';
+import { LoadingRenderParams, LoadingRenderInfo, loadingConfig } from './config';
 import { transferStyle } from '../../utils/Styles';
 import LoadingGif from '../LoadingGif';
 import HiText from '../HiText';
@@ -8,10 +8,11 @@ import HiText from '../HiText';
 /** Loading：获取渲染信息 */
 export default function getRenderInfo(params: LoadingRenderParams): LoadingRenderInfo {
   const {
-    consumerValue: { renderInfo, themeConfig },
+    consumerValue: { renderInfo, themeConfig: _themeConfig },
     props: { accessibilityLabel, accessible, onPress, gif, text, style, loadingGifProps },
   } = params;
 
+  const themeConfig = { ...loadingConfig, ..._themeConfig };
   const wrapStyle: ViewStyle = transferStyle([themeConfig.loadingProps.style, style]);
 
   const result: LoadingRenderInfo = {

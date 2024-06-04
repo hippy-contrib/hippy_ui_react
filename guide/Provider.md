@@ -150,8 +150,8 @@ const [useDark, setUseDark] = React.useState(false);
   // 样式配置
   themeConfigFunc={({theme, defaultConfig}) => {
     const myConfig = theme === ThemeMode.light
-      ? {buttonMediumTextProps: {size: 14}}
-      : {buttonMediumTextProps: {size: 20}};
+      ? {}
+      : {hiTextSizeDefault:20};
     return {...defaultConfig, ...myConfig, colorTheme: "#409EFF"};
   }}
   // 自定义渲染
@@ -175,12 +175,11 @@ const [useDark, setUseDark] = React.useState(false);
   </View>
 
   <Button type={Button.type.primary}>
-    {"按钮在黑暗模式下文字变大"}
+    {"主题色"}
   </Button>
 
   <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center",marginTop: 20, padding: 10}}>
-    <HiText color={HiText.color.theme}>{"修改主题色   "}</HiText>
-    <HiText color={"secondary"}>{"修改文字 secondary 色值"}</HiText>
+    <HiText color={"secondary"}>{"修改文字表现"}</HiText>
   </View>
 </Provider>
 ```

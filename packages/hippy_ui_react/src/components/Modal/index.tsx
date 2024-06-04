@@ -8,7 +8,7 @@ import Button from '../Button';
 import Divider from '../Divider';
 import HiText from '../HiText';
 import Provider from '../../provider/Provider';
-import { ModalRenderInfo } from '../../themeConfig/types/modal';
+import { ModalRenderInfo } from './config';
 
 /**
  * @visibleName Modal 对话框

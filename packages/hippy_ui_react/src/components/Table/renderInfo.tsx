@@ -1,13 +1,14 @@
-import { TableRenderParams, TableRenderInfo } from '../../themeConfig/types/table';
+import { TableRenderParams, TableRenderInfo, tableConfig } from './config';
 import { transferStyle } from '../../utils/Styles';
 import { TableBorderStyle } from './PropsType';
 
 /** Table：获取渲染信息 */
 export default function getRenderInfo(params: TableRenderParams): TableRenderInfo {
   const {
-    consumerValue: { themeConfig, renderInfo },
+    consumerValue: { themeConfig: _themeConfig, renderInfo },
     props: { style, borderStyle, headerCellStyleFn, headerStyle, rowStyleFn, cellStyleFn },
   } = params;
+  const themeConfig = { ...tableConfig, ..._themeConfig };
   const _borderStyle = transferStyle([themeConfig.tableBorderStyle, borderStyle]) as TableBorderStyle;
 
   const result: TableRenderInfo = {

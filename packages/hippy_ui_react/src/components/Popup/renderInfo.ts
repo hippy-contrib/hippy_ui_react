@@ -1,13 +1,14 @@
-import { PopupRenderInfo, PopupRenderParams } from '../../themeConfig/types/popup';
+import { PopupRenderInfo, PopupRenderParams, popupConfig } from './config';
 import { transferStyle } from '../../utils/Styles';
 
 /** Popup：获取渲染信息 */
 export default function getRenderInfo(params: PopupRenderParams): PopupRenderInfo {
   const {
-    consumerValue: { themeConfig, renderInfo },
+    consumerValue: { themeConfig: _themeConfig, renderInfo },
     props: { style },
   } = params;
 
+  const themeConfig = { ...popupConfig, ..._themeConfig };
   const result: PopupRenderInfo = {
     mainProps: {
       ...themeConfig.popupWrap,

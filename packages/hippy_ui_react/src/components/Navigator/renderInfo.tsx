@@ -1,15 +1,16 @@
 import React, { isValidElement } from 'react';
 import { Image } from '@hippy/react';
-import { NavigatorRenderInfo, NavigatorRenderParams } from '../../themeConfig/types/navigator';
+import { NavigatorRenderInfo, NavigatorRenderParams, navigatorConfig } from './config';
 import { transferStyle } from '../../utils/Styles';
 import HiText from '../HiText';
 
 /** Navigator：获取渲染信息 */
 export default function getRenderInfo(params: NavigatorRenderParams): NavigatorRenderInfo {
   const {
-    consumerValue: { renderInfo, themeConfig },
+    consumerValue: { renderInfo, themeConfig: _themeConfig },
     props: { title, back, onBack },
   } = params;
+  const themeConfig = { ...navigatorConfig, ..._themeConfig };
   const { wrapStyle, navigatorStyle, titleStyle, statusBarStyle } = getStyle(params);
   const result: NavigatorRenderInfo = {
     wrapStyle,
@@ -29,9 +30,10 @@ export default function getRenderInfo(params: NavigatorRenderParams): NavigatorR
 
 function getStyle(params: NavigatorRenderParams) {
   const {
-    consumerValue: { themeConfig },
+    consumerValue: { themeConfig: _themeConfig },
     props: { style, statusBarStyle, wrapStyle, titleCenter },
   } = params;
+  const themeConfig = { ...navigatorConfig, ..._themeConfig };
   return {
     wrapStyle: transferStyle([themeConfig.navigatorWrapStyle, wrapStyle]),
     statusBarStyle: transferStyle([themeConfig.navigatorStatusBarStyle, statusBarStyle]),

@@ -1,5 +1,5 @@
 import { ViewStyle } from '@hippy/react';
-import { SwitchRenderInfo, SwitchRenderParams } from '../../themeConfig/types/switch';
+import { SwitchRenderInfo, SwitchRenderParams, switchConfig } from './config';
 import { transferStyle } from '../../utils/Styles';
 import { isWeb } from '../../utils/Utils';
 
@@ -36,11 +36,12 @@ export default function getRenderInfo(params: SwitchRenderParams): SwitchRenderI
 /** Switch：获取渲染样式 */
 function getStyles(params: SwitchRenderParams) {
   const {
-    consumerValue: { themeConfig },
+    consumerValue: { themeConfig: _themeConfig },
     props,
     state,
     translateXAnimation,
   } = params;
+  const themeConfig = { ...switchConfig, ..._themeConfig };
   const { activeColor, style, circleStyle: userCircleStyle } = props;
   const { checked } = state;
 

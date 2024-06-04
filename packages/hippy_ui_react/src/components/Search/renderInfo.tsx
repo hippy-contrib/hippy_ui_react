@@ -1,17 +1,18 @@
 import React, { isValidElement } from 'react';
 import { Image, ViewStyle } from '@hippy/react';
-import { SearchRenderInfo, SearchRenderParams } from '../../themeConfig/types/search';
+import { SearchRenderInfo, SearchRenderParams, searchConfig } from './config';
 import { transferStyle } from '../../utils/Styles';
 import { getObjectType, ObjectType } from '../../utils/Utils';
 
 /** Search：获取渲染信息 */
 export default function getRenderInfo(params: SearchRenderParams): SearchRenderInfo {
   const {
-    consumerValue: { renderInfo, themeConfig },
+    consumerValue: { renderInfo, themeConfig: _themeConfig },
     props: { leftIcon, inputProps, wrapProps, rightIcon, clearIcon },
     state: { value },
     onClear,
   } = params;
+  const themeConfig = { ...searchConfig, ..._themeConfig };
   const { wrapStyle, leftIconStyle, clearIconStyle, inputStyle } = getStyle(params);
 
   const result: SearchRenderInfo = {
@@ -54,10 +55,11 @@ export default function getRenderInfo(params: SearchRenderParams): SearchRenderI
 /** Search：获取样式信息 */
 function getStyle(params: SearchRenderParams) {
   const {
-    consumerValue: { themeConfig },
+    consumerValue: { themeConfig: _themeConfig },
     props: { wrapProps, inputProps, clearIcon, leftIcon },
   } = params;
 
+  const themeConfig = { ...searchConfig, ..._themeConfig };
   const wrapStyle: ViewStyle = transferStyle([themeConfig.searchWrapPropsFn(params).style, wrapProps?.style]);
   const leftIconStyle: ViewStyle = transferStyle([
     themeConfig.searchLeftIconPropsFn(params).style,

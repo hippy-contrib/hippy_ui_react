@@ -3,16 +3,17 @@ import { ViewStyle, ImageProps, Platform } from '@hippy/react';
 import { HiTextProps } from '../HiText/PropsType';
 import { transferStyle, UtilStyles, pickTextStyle } from '../../utils/Styles';
 import { extendObj, isWeb } from '../../utils/Utils';
-import { ButtonRenderInfo, ButtonRenderParams } from '../../themeConfig/types/button';
+import { ButtonRenderInfo, ButtonRenderParams, buttonConfig } from './config';
 
 /** Button：获取渲染信息 */
 export default function getRenderInfo(params: ButtonRenderParams): ButtonRenderInfo {
   const {
-    consumerValue: { themeConfig, renderInfo },
+    consumerValue: { themeConfig: _themeConfig, renderInfo },
     props,
   } = params;
   const { badge, image, accessible, accessibilityLabel, children } = props;
 
+  const themeConfig = { ...buttonConfig, ..._themeConfig };
   const allStyles = getStyle(params);
 
   const result: ButtonRenderInfo = {
@@ -52,9 +53,10 @@ export default function getRenderInfo(params: ButtonRenderParams): ButtonRenderI
 /** Button：获取渲染样式 */
 function getStyle(params: ButtonRenderParams) {
   const {
-    consumerValue: { themeConfig },
+    consumerValue: { themeConfig: _themeConfig },
     props,
   } = params;
+  const themeConfig = { ...buttonConfig, ..._themeConfig };
   const { disabled, style, loading, circle, round } = props;
 
   // 注意：部分安卓机同时使用{opacity、overflow:"hidden"、borderRadius}会导致children无法渲染
