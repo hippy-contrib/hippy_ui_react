@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2024-06-04)
+
+
+### Features
+
+* 按需加载配置 ([164458d](https://github.com/hippy-contrib/hippy_ui_react/commit/164458dcfa167a47b32f0be596cc64c8c80961aa))
+
+
+
+
+
 ## 1.1.19 (2024-05-24)
 
 
