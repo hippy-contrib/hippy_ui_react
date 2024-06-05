@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.1 (2024-06-05)
+
+
+### Bug Fixes
+
+* loading support text style ([6118c9f](https://github.com/hippy-contrib/hippy_ui_react/commit/6118c9f3c0405d2ad6ffbbbda524f30df9a0bd51))
+
+
+
+
+
 # 1.2.0 (2024-06-04)
 
 
