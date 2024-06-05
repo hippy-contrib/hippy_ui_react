@@ -1,7 +1,7 @@
 import React from 'react';
 import { ViewStyle } from '@hippy/react';
 import { LoadingRenderParams, LoadingRenderInfo, loadingConfig } from './config';
-import { transferStyle } from '../../utils/Styles';
+import { pickTextStyle, transferStyle } from '../../utils/Styles';
 import LoadingGif from '../LoadingGif';
 import HiText from '../HiText';
 
@@ -28,7 +28,11 @@ export default function getRenderInfo(params: LoadingRenderParams): LoadingRende
       typeof text === 'string' ? (
         <HiText
           {...themeConfig.loadingTextProps}
-          style={transferStyle([{ color: themeConfig.colorTextSecondary }, themeConfig.loadingTextProps.style])}
+          style={transferStyle([
+            { color: themeConfig.colorTextSecondary },
+            themeConfig.loadingTextProps.style,
+            pickTextStyle(wrapStyle),
+          ])}
         >
           {text}
         </HiText>

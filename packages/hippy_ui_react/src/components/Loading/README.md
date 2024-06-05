@@ -6,7 +6,7 @@
   <Loading/>
   <Loading text={"加载中..."}/>
   <Loading loadingGifProps={{percent: 50}} text={"加载中..."}/>
-  <Loading gif={null} text={"加载中..."}/>
+  <Loading style={{color:"#000"}} gif={null} text={"加载中..."}/>
   <Loading
     gif={
     <Image

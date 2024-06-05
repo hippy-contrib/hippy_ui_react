@@ -11,7 +11,7 @@ export interface LoadingProps {
   loadingGifProps?: LoadingGifProps;
   /** 点击事件 */
   onPress?: () => void;
-  /** 容器样式 */
+  /** 容器样式（可设置文字样式，会被透传下去） */
   style?: GenericStyleProp<ViewStyle>;
   /** 开启无障碍阅读 */
   accessible?: boolean;
