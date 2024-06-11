@@ -73,8 +73,8 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
     if (autoplay > 0 && children.length > 1 && !this.autoplayTimer) {
       this.autoplayTimer = setTimeout(() => {
         const { beforePlay } = this.props;
-        // 已经最后一个了要回滚到0（留1的偏移误差）
-        const nextIndex = this.scrollX >= this.getMaxScrollX() - 1 ? 0 : this.getNextIndex();
+        // 已经最后一个了要回滚到0（留2的偏移误差）
+        const nextIndex = this.scrollX >= this.getMaxScrollX() - 2 ? 0 : this.getNextIndex();
         (!beforePlay || beforePlay(nextIndex)) && this.setIndex(nextIndex);
         this.stopAutoplay();
         this.autoplay();
