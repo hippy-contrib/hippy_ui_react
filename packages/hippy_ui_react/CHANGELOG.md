@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.2 (2024-06-11)
+
+
+### Bug Fixes
+
+* swiper autoplay ([772fbdc](https://github.com/hippy-contrib/hippy_ui_react/commit/772fbdc2e8a7253eeed63d835d17217430dcd673))
+
+
+
+
+
 ## 1.2.1 (2024-06-05)
 
 
