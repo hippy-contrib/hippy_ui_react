@@ -17,12 +17,15 @@ export default function getRenderInfo(params: HiTextRenderParams): HiTextRenderI
   const themeConfig = { ...hiTextConfig, ..._themeConfig };
   const { textStyle } = getStyles(params);
   const child = renderChildren(children);
+  const _children = themeConfig.hiTextFormat ? themeConfig.hiTextFormat(child) : child;
+  const { accessibilityLabel = typeof _children === 'string' ? _children : undefined } = textProps;
 
   const result: HiTextRenderInfo = {
     textProps: {
       ...textProps,
+      accessibilityLabel,
       style: textStyle,
-      children: themeConfig.hiTextFormat ? themeConfig.hiTextFormat(child) : child,
+      children: _children,
     },
   };
   return renderInfo?.hiText?.({ ...params, defaultRenderInfo: result }) || result;
