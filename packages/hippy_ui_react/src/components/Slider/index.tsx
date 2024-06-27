@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, LayoutEvent, TouchableEvent } from '@hippy/react';
+import { View, Image, LayoutEvent, TouchableEvent, UIManagerModule } from '@hippy/react';
 import { SliderProps, SliderState } from './PropsType';
 import Consumer from '../../provider/Consumer';
 import getRenderInfo from './renderInfo';
@@ -25,6 +25,7 @@ export class Slider extends Component<SliderProps, SliderState> {
     initValues: [10, 50],
     minMove: 1,
     blockSize: 18,
+    contentOnEvent: false,
   };
 
   constructor(props: SliderProps) {
@@ -50,6 +51,7 @@ export class Slider extends Component<SliderProps, SliderState> {
     return true;
   }
 
+  private sliderRef: View = null;
   private lineRef: View = null;
   private blockLeftRef: View = null;
   private blockRightRef: View = null;
@@ -58,6 +60,9 @@ export class Slider extends Component<SliderProps, SliderState> {
   private touchMoveRange = { start: 0, end: 0 };
   private moveToNum: number = null;
   private startValues = { startValue: 0, endValue: 0 };
+  private blockType?: EventOriginType = undefined;
+  private blockLeftX: number = 0;
+  private blockRightX: number = 0;
 
   // 设置位置相关的值
   setPositionValue = (props: SliderProps) => {
@@ -129,45 +134,118 @@ export class Slider extends Component<SliderProps, SliderState> {
     return toNum;
   };
 
-  getEvents = (type: EventOriginType, ele: View) => {
+  getEvents = () => {
     const events = {
       onTouchDown: (event: TouchableEvent) => {
-        this.onTouchDown(event, type);
+        void this.onTouchDown(event);
       },
       onTouchMove: (event: TouchableEvent) => {
-        this.onTouchMove(event, type);
+        this.onTouchMove(event);
       },
       onTouchEnd: (event: TouchableEvent) => {
-        this.onTouchEnd(event, type);
+        this.onTouchEnd(event);
       },
       onTouchCancel: (event: TouchableEvent) => {
-        this.onTouchEnd(event, type);
+        this.onTouchEnd(event);
       },
       onMouseDown: (event: MouseEvent) => {
-        this.onTouchDown({ pageX: event.clientX }, type);
+        void this.onTouchDown({ pageX: event.clientX });
       },
       onMouseMove: (event: MouseEvent) => {
-        this.onTouchMove({ pageX: event.clientX }, type);
+        this.onTouchMove({ pageX: event.clientX });
       },
       onMouseUp: (event: MouseEvent) => {
-        this.onTouchEnd({ pageX: event.clientX }, type);
+        this.onTouchEnd({ pageX: event.clientX });
       },
       onMouseOut: (event: MouseEvent) => {
-        this.onTouchEnd({ pageX: event.clientX }, type);
+        this.onTouchEnd({ pageX: event.clientX });
       },
     };
     return this.props.disabled ? {} : events;
   };
 
-  onTouchDown = (event: Partial<TouchableEvent>, type: EventOriginType) => {
+  /**
+   *
+   * @param x 注意当前的x是page坐标，需要转换为容器坐标
+   * @returns
+   */
+  getBlockMoveType = async (x: number): Promise<EventOriginType | null> => {
+    const { initValues, blockSize, contentOnEvent } = this.props;
+    const { sliderWidth } = this.state;
+    const isDoubleBlock = getObjectType(initValues) === 'Array' && initValues[1];
+
+    // 注意需要获取容器的page坐标，用来判断用户触摸开始离那个滑块最近
+    let sliderX = 0;
+    try {
+      // 获取容器的page坐标
+      const slideRec: any = isWeb()
+        ? this.sliderRef.node?.getBoundingClientRect?.()
+        : await UIManagerModule.measureInAppWindow(this.sliderRef as any);
+      // hippy是x， web是left
+      sliderX = slideRec.x || slideRec.left;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+    // 如果在web下，滑块的onLayout只会首次执行，所以需要实时更新
+    if (isWeb()) {
+      this.blockLeftX = this.blockLeftRef.node.offsetLeft;
+      this.blockRightX = this.blockRightRef.node.offsetLeft;
+    }
+
+    // 把点击坐标转换为容器坐标
+    const _x = x - sliderX;
+    // 中心点
+    const blockLeftX = this.blockLeftX + (blockSize/2);
+    const blockRightX = this.blockRightX + (blockSize/2);
+    // 只有一个滑块，则是end
+    if (isDoubleBlock && sliderWidth) {
+      // 如果是整个容器响应事件，则判断离那个滑块近
+      if (contentOnEvent) {
+        // 离左侧的滑块更近
+        if (Math.abs(blockLeftX - _x) < Math.abs(blockRightX - _x)) {
+          return EventOriginType.start;
+        } else {
+          return EventOriginType.end;
+        }
+      } else {
+        // 判断点击的是哪个滑块
+        // 判断点击的位置是否在滑块blockSize之内
+        if (Math.abs(blockRightX - _x) <= (blockSize / 2)) {
+          return EventOriginType.end;
+        } else if (Math.abs(blockLeftX - _x) <= (blockSize / 2)) {
+          return EventOriginType.start;
+        };
+        // 未选中滑块
+        return null;
+      }
+    } else {
+      // 单滑动
+      if (contentOnEvent) {
+        return EventOriginType.end;
+      } else {
+        if (Math.abs(blockRightX - _x) <= (blockSize / 2)) {
+          return EventOriginType.end;
+        }
+        // 未选中滑块
+        return null;
+      }
+    }
+  };
+
+  onTouchDown = async (event: Partial<TouchableEvent>) => {
+    if (!this.sliderRef) return;
     const { limitValues, doubleBlock } = this.getLineValues(this.props);
     this.touchDownX = event.page_x || event.pageX;
     const { startValue, endValue } = this.state;
+    this.blockType = await this.getBlockMoveType(this.touchDownX);
+    console.info('[slider]blockMoveType', this.blockType);
+    if (!this.blockType) return;
 
     // 记录移动前的旧值
     this.startValues = { startValue, endValue };
     // 获取当前元素可以移动的范围，主要是处理两个滑块的情况
-    if (type === 'start') {
+    if (this.blockType === 'start') {
       this.moveRef = this.blockLeftRef;
       this.touchMoveRange = {
         start: limitValues[0],
@@ -183,8 +261,8 @@ export class Slider extends Component<SliderProps, SliderState> {
     }
   };
 
-  onTouchMove = (event: Partial<TouchableEvent>, type: string) => {
-    if (!this.touchDownX) return;
+  onTouchMove = (event: Partial<TouchableEvent>) => {
+    if (!this.touchDownX || !this.blockType) return;
 
     // const { startValue, endValue } = this.state;
     const { onChange, blockSize } = this.props;
@@ -196,22 +274,25 @@ export class Slider extends Component<SliderProps, SliderState> {
     const lineEle: any = isWeb() ? this.lineRef.node : this.lineRef ? getElementFromFiberRef(this.lineRef) : null;
 
     const moveX = (event.page_x || event.pageX) - this.touchDownX;
-    const toNum = this.getToNum(moveX, type === 'start' ? this.startValues.startValue : this.startValues.endValue);
+    const toNum = this.getToNum(
+      moveX,
+      this.blockType === EventOriginType.start ? this.startValues.startValue : this.startValues.endValue,
+    );
     if (toNum >= this.touchMoveRange.start && toNum <= this.touchMoveRange.end && btnEle && lineEle) {
       // 以滑块中心点为原点，需要处理滑块本身的size
       // hippy对超出容器节点会裁切，滑块以外层容器做定位，所以需要处理边界值
       const style: { left?: number; right?: number } =
-        type === 'start'
+        this.blockType === EventOriginType.start
           ? {
-              // 需要减去滑块自身的seiz/2
-              left: lineLeft + ((toNum - limitValues[0]) / allNumLen) * lineWidth - blockSize / 2,
-            }
+            // 需要减去滑块自身的seiz/2
+            left: lineLeft + ((toNum - limitValues[0]) / allNumLen) * lineWidth - blockSize / 2,
+          }
           : {
-              right: lineRight + ((limitValues[1] - toNum) / allNumLen) * lineWidth - blockSize / 2,
-            };
+            right: lineRight + ((limitValues[1] - toNum) / allNumLen) * lineWidth - blockSize / 2,
+          };
 
       if (isWeb()) {
-        if (type === 'start') {
+        if (this.blockType === EventOriginType.start) {
           btnEle.style.left = `${style.left}px`;
           lineEle.style.left = `${style.left}px`;
         } else {
@@ -222,7 +303,7 @@ export class Slider extends Component<SliderProps, SliderState> {
         // btnEle.setNativeProps({ style });
         // lineEle.setNativeProps({ style });
         // setNativeProps失效，先使用setState
-        if (type === 'start') {
+        if (this.blockType === EventOriginType.start) {
           this.setState({ ...this.state, startValue: toNum });
         } else {
           this.setState({ ...this.state, endValue: toNum });
@@ -231,15 +312,15 @@ export class Slider extends Component<SliderProps, SliderState> {
 
       this.moveToNum = toNum;
       onChange?.({
-        start: type === 'start' ? toNum : this.startValues.startValue,
-        end: type === 'end' ? toNum : this.startValues.endValue,
+        start: this.blockType === EventOriginType.start ? toNum : this.startValues.startValue,
+        end: this.blockType === EventOriginType.end ? toNum : this.startValues.endValue,
       });
     }
   };
 
-  onTouchEnd = (event: Partial<TouchableEvent>, type: string) => {
+  onTouchEnd = (event: Partial<TouchableEvent>) => {
     if (this.moveToNum !== null) {
-      if (type === 'start') {
+      if (this.blockType === EventOriginType.start) {
         this.setState({ ...this.state, startValue: this.moveToNum });
       } else {
         this.setState({ ...this.state, endValue: this.moveToNum });
@@ -251,6 +332,7 @@ export class Slider extends Component<SliderProps, SliderState> {
     this.moveRef = null;
     this.touchDownX = 0;
     this.startValues = { startValue: 0, endValue: 0 };
+    this.blockType = undefined;
   };
 
   render() {
@@ -272,6 +354,9 @@ export class Slider extends Component<SliderProps, SliderState> {
 
           return (
             <View
+              ref={(r) => {
+                this.sliderRef = r;
+              }}
               {...wrapProps}
               onLayout={(e: LayoutEvent) => {
                 // 实际的移动宽度，
@@ -279,6 +364,7 @@ export class Slider extends Component<SliderProps, SliderState> {
               }}
               accessible={!disabled}
               accessibilityLabel={`${limitValues[0]}到${limitValues[1]}`}
+              {...this.getEvents()}
             >
               <View {...lineProps} />
               {sliderWidth ? (
@@ -299,7 +385,9 @@ export class Slider extends Component<SliderProps, SliderState> {
                   }}
                   {...blockProps}
                   style={{ ...blockProps.style, left: position.left - blockSize / 2 }}
-                  {...this.getEvents(EventOriginType.start, this.blockLeftRef)}
+                  onLayout={(e: LayoutEvent) => {
+                    this.blockLeftX = e.layout.x;
+                  }}
                   accessible={!disabled}
                   accessibilityLabel={`${startValue}`}
                 >
@@ -319,7 +407,9 @@ export class Slider extends Component<SliderProps, SliderState> {
                   }}
                   {...blockProps}
                   style={{ ...blockProps.style, right: position.right - blockSize / 2 }}
-                  {...this.getEvents(EventOriginType.end, this.blockRightRef)}
+                  onLayout={(e: LayoutEvent) => {
+                    this.blockRightX = e.layout.x;
+                  }}
                   accessible={!disabled}
                   accessibilityLabel={`${endValue}`}
                 >

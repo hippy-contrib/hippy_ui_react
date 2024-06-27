@@ -18,6 +18,8 @@ export interface SliderProps {
   blockSize?: number;
   /** 滑块的颜色 */
   blockColor?: string;
+  /** 设置整个容器响应滑动事件 */
+  contentOnEvent?: boolean;
 
   /** 容器样式 */
   style?: GenericStyleProp<ViewStyle>;
