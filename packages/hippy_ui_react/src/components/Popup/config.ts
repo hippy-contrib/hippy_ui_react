@@ -30,6 +30,7 @@ export const popupConfig: ThemeConfigPopup = {
       bottom: 0,
       borderTopLeftRadius: 15,
       borderTopRightRadius: 15,
+      overflow: 'hidden',
     },
   },
 };
