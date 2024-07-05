@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.5 (2024-07-05)
+
+**Note:** Version bump only for package hippy_ui_react_business
+
+
+
+
+
 ## 1.2.4 (2024-06-27)
 
 **Note:** Version bump only for package hippy_ui_react_business
