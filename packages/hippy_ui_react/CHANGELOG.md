@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.7 (2024-07-05)
+
+
+### Bug Fixes
+
+* swiper add momentum ([32ce84e](https://github.com/hippy-contrib/hippy_ui_react/commit/32ce84e9a1a9687d4cfed54a451ad1067a87c313))
+
+
+
+
+
 ## 1.2.6 (2024-07-05)
 
 
