@@ -21,7 +21,7 @@ export enum PagingType {
 export enum MomentumType {
   no = 0, // 不等待惯性滚动
   complete = 1, // 等待惯性滚动结束
-  endAtSlow = 2, // 惯性速度变慢时自动结束
+  endAtSlow = 2, // 惯性速度变慢时自动结束（IOS无效，没有惯性期间滚动回调）
 }
 
 export interface SwiperProps {
