@@ -13,6 +13,11 @@ export enum SwiperCardPosition {
   center = 'center',
   left = 'left',
 }
+export enum PagingType {
+  none = 0, // 一个个划
+  page = 1, // 整屏划
+  pageRight = 2, // 整屏划-右边不截断
+}
 
 export interface SwiperProps {
   /** 容器样式 */
@@ -49,7 +54,7 @@ export interface SwiperProps {
     startAndEnd?: number;
   };
   /** 整屏滑动（一屏多卡片时设置是否整屏滑动） */
-  pagingEnabled?: boolean;
+  pagingEnabled?: boolean | PagingType;
 }
 
 export interface SwiperState {
