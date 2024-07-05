@@ -1,8 +1,8 @@
-import React, { cloneElement, Component, isValidElement, ReactElement, ReactNode, Fragment } from 'react';
+import React, { cloneElement, Component, Fragment, isValidElement, ReactElement, ReactNode } from 'react';
 import { Platform, View } from '@hippy/react';
 import ScrollView from '../../elements/ScrollView';
 
-import { SwiperCardPosition, SwiperProps, SwiperState, ScrollEvent } from './PropsType';
+import { PagingType, ScrollEvent, SwiperCardPosition, SwiperProps, SwiperState } from './PropsType';
 import { WINDOW_WIDTH } from '../../utils/Dimensions';
 import { isWeb } from '../../utils/Utils';
 import { transferStyle } from '../../utils/Styles';
@@ -39,6 +39,7 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
   };
 
   static cardPosition = SwiperCardPosition;
+  static pagingType = PagingType;
 
   componentDidMount() {
     this.autoplay();
@@ -232,8 +233,11 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
   // 计算：获取整屏滑动的序号列表
   getPagingEnabledList = () => {
     const { pagingEnabled } = this.props;
+    const pageType =
+      typeof pagingEnabled === 'number' ? pagingEnabled : pagingEnabled ? PagingType.page : PagingType.none;
     const children = this.getChildren();
-    if (pagingEnabled) {
+    if (pageType === PagingType.page) {
+      // 整屏划
       const { wrapWidth } = this;
       const result: number[] = [0];
       let pageStart = 0;
@@ -245,7 +249,38 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
         }
       });
       return result;
+    } else if (pageType === PagingType.pageRight) {
+      // 整屏划-右边不截断
+      const { wrapWidth } = this;
+      const result: number[] = [0];
+      let pageStart = 0;
+      children.forEach((v, i) => {
+        if (this.getCardLayout(i).cardEndX > pageStart + wrapWidth + 1) {
+          let _pageStart = this.getScrollX(i);
+          // 找到当前页面最后一个完整漏出的条目
+          const pageEnd = _pageStart + wrapWidth;
+          for (let j = i; j < children.length; j++) {
+            const nextLayout = this.getCardLayout(j);
+            if (nextLayout.cardEndX > pageEnd) {
+              _pageStart = nextLayout.cardStartX - this.props.spacing.between - wrapWidth;
+              break;
+            }
+          }
+          // 往前找条目能不能补满页面
+          let lastIdx = i;
+          for (let j = i - 1; j >= 0; j--) {
+            if (this.getCardLayout(j).cardStartX < _pageStart) {
+              lastIdx = j + 1;
+              break;
+            }
+          }
+          result.push(lastIdx);
+          pageStart = this.getScrollX(lastIdx);
+        }
+      });
+      return result;
     } else {
+      // 一个个划
       return children.map((v, i) => i);
     }
   };
@@ -282,15 +317,19 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
         });
   };
 
-  // 计算：获取最大滚动偏移x
-  getMaxScrollX = () => {
-    const { wrapWidth } = this;
+  // 计算：获取内容宽度
+  getContentWidth = () => {
     const {
       spacing: { between, startAndEnd = between },
     } = this.props;
     const children = this.getChildren();
-    const contentWidth = this.spacingLayout[children.length - 1] + startAndEnd;
-    return contentWidth - wrapWidth;
+    return this.spacingLayout[children.length - 1] + startAndEnd;
+  };
+
+  // 计算：获取最大滚动偏移x
+  getMaxScrollX = () => {
+    const { wrapWidth } = this;
+    return this.getContentWidth() - wrapWidth;
   };
 
   // 计算：获取滚动到index的实际x
