@@ -67,6 +67,8 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
   scrollByCode: any = null;
   public scrollX = 0;
   timerWaitScrollEnd: any;
+  isMomentumScrollBegin = false;
+  lastScrollTime = new Date().getTime();
 
   // 轮播：自动轮播
   autoplay = () => {
@@ -96,7 +98,8 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
   // 滚动，可以获取contentOffset
   onScroll = (e: ScrollEvent) => {
     Platform.OS !== 'ios' && this.clearWaitScrollEnd(); // ios在onScrollEndDrag后又触发了一次onScroll
-    const { onScroll } = this.props;
+    const { onScroll, momentum, autoScrollWidth } = this.props;
+    const nowTime = new Date().getTime();
     // 无障碍滚动支持
     if (
       !isWeb() &&
@@ -105,8 +108,15 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
       (!this.autoplayTimer || Math.abs(e.contentOffset.x - this.state.offsetX) >= this.wrapWidth - 1) // 轮播时不是无障碍滑动（若无障碍+轮播，则以无障碍一次性滑比较大距离来判断）
     ) {
       this.scrollEnd(e.contentOffset.x, { byAccessible: true });
+    } else if (autoScrollWidth > 0 && momentum === MomentumType.endAtSlow && this.isMomentumScrollBegin) {
+      if (Math.abs((this.scrollX - e.contentOffset.x) / (nowTime - this.lastScrollTime)) < 0.03) {
+        // 惯性滚动慢了
+        this.scrollEnd(e.contentOffset.x);
+        this.autoplay();
+      }
     }
     this.scrollX = e.contentOffset.x;
+    this.lastScrollTime = nowTime;
     onScroll?.(e);
   };
 
@@ -134,7 +144,7 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
   // 滚动结束：等一下是否有惯性滚动
   waitScrollEnd = (scrollEndX: number, options?: { byAccessible?: boolean; animated?: boolean }) => {
     this.clearWaitScrollEnd();
-    if (this.props.momentum === MomentumType.complete) {
+    if (this.isWaitMomentumScroll()) {
       this.timerWaitScrollEnd = setTimeout(() => {
         this.scrollEnd(scrollEndX, options);
         this.autoplay();
@@ -471,9 +481,13 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
     return React.Children.toArray(this.props.children).filter((v) => isValidElement(v));
   };
 
+  // 是否等待惯性滚动
+  isWaitMomentumScroll = () => {
+    return ([MomentumType.complete, MomentumType.endAtSlow] as MomentumType[]).includes(this.props.momentum);
+  };
+
   render() {
-    const { style, scrollEnabled, autoScrollWidth, onScrollBeginDrag, onScrollEndDrag, onLayout, momentum } =
-      this.props;
+    const { style, scrollEnabled, autoScrollWidth, onScrollBeginDrag, onScrollEndDrag, onLayout } = this.props;
     return (
       <>
         <ScrollView
@@ -490,20 +504,24 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
           scrollEnabled={scrollEnabled}
           onScroll={this.onScroll}
           onMomentumScrollBegin={() => {
-            if (autoScrollWidth > 0 && momentum === MomentumType.complete) {
+            this.isMomentumScrollBegin = true;
+            this.lastScrollTime = new Date().getTime();
+            if (autoScrollWidth > 0 && this.isWaitMomentumScroll()) {
               this.stopAutoplay();
               this.clearWaitScrollEnd();
             }
           }}
           onMomentumScrollEnd={(e?: ScrollEvent) => {
+            this.isMomentumScrollBegin = false;
             this.scrollX = e?.contentOffset ? e.contentOffset.x : this.scrollX;
-            if (!this.scrollByCode && autoScrollWidth > 0 && momentum === MomentumType.complete) {
-              this.waitScrollEnd(e.contentOffset.x);
+            if (!this.scrollByCode && autoScrollWidth > 0 && this.isWaitMomentumScroll()) {
+              this.scrollEnd(e.contentOffset.x);
               this.autoplay();
             }
           }}
           onScrollBeginDrag={(e?: ScrollEvent) => {
             this.scrollByAccessible = false;
+            this.isMomentumScrollBegin = false;
             this.stopAutoplay();
             this.clearWaitScrollEnd();
             onScrollBeginDrag?.(e);
