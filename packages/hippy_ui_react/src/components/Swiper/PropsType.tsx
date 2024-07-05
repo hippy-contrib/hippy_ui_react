@@ -18,6 +18,10 @@ export enum PagingType {
   page = 1, // 整屏划
   pageRight = 2, // 整屏划-右边不截断
 }
+export enum MomentumType {
+  no = 0, // 不等待惯性滚动
+  complete = 1, // 等待惯性滚动结束
+}
 
 export interface SwiperProps {
   /** 容器样式 */
@@ -55,6 +59,8 @@ export interface SwiperProps {
   };
   /** 整屏滑动（一屏多卡片时设置是否整屏滑动） */
   pagingEnabled?: boolean | PagingType;
+  /** 惯性滚动 */
+  momentum?: MomentumType;
 }
 
 export interface SwiperState {

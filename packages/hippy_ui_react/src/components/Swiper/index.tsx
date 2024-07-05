@@ -2,7 +2,7 @@ import React, { cloneElement, Component, Fragment, isValidElement, ReactElement,
 import { Platform, View } from '@hippy/react';
 import ScrollView from '../../elements/ScrollView';
 
-import { PagingType, ScrollEvent, SwiperCardPosition, SwiperProps, SwiperState } from './PropsType';
+import { MomentumType, PagingType, ScrollEvent, SwiperCardPosition, SwiperProps, SwiperState } from './PropsType';
 import { WINDOW_WIDTH } from '../../utils/Dimensions';
 import { isWeb } from '../../utils/Utils';
 import { transferStyle } from '../../utils/Styles';
@@ -27,6 +27,7 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
     scrollEnabled: true,
     cardPosition: SwiperCardPosition.center,
     spacing: { between: 0, startAndEnd: 0 },
+    momentum: MomentumType.complete,
   };
 
   static defaultIndicator: Partial<IndicatorProps> = {
@@ -40,6 +41,7 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
 
   static cardPosition = SwiperCardPosition;
   static pagingType = PagingType;
+  static momentumType = MomentumType;
 
   componentDidMount() {
     this.autoplay();
@@ -132,10 +134,15 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
   // 滚动结束：等一下是否有惯性滚动
   waitScrollEnd = (scrollEndX: number, options?: { byAccessible?: boolean; animated?: boolean }) => {
     this.clearWaitScrollEnd();
-    this.timerWaitScrollEnd = setTimeout(() => {
+    if (this.props.momentum === MomentumType.complete) {
+      this.timerWaitScrollEnd = setTimeout(() => {
+        this.scrollEnd(scrollEndX, options);
+        this.autoplay();
+      }, 50);
+    } else {
       this.scrollEnd(scrollEndX, options);
       this.autoplay();
-    }, 50);
+    }
   };
 
   // 清理滚动结束等待
@@ -465,7 +472,8 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
   };
 
   render() {
-    const { style, scrollEnabled, autoScrollWidth, onScrollBeginDrag, onScrollEndDrag, onLayout } = this.props;
+    const { style, scrollEnabled, autoScrollWidth, onScrollBeginDrag, onScrollEndDrag, onLayout, momentum } =
+      this.props;
     return (
       <>
         <ScrollView
@@ -482,14 +490,14 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
           scrollEnabled={scrollEnabled}
           onScroll={this.onScroll}
           onMomentumScrollBegin={() => {
-            if (autoScrollWidth > 0) {
+            if (autoScrollWidth > 0 && momentum === MomentumType.complete) {
               this.stopAutoplay();
               this.clearWaitScrollEnd();
             }
           }}
           onMomentumScrollEnd={(e?: ScrollEvent) => {
             this.scrollX = e?.contentOffset ? e.contentOffset.x : this.scrollX;
-            if (!this.scrollByCode && autoScrollWidth > 0) {
+            if (!this.scrollByCode && autoScrollWidth > 0 && momentum === MomentumType.complete) {
               this.waitScrollEnd(e.contentOffset.x);
               this.autoplay();
             }
