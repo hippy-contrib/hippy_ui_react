@@ -60,7 +60,7 @@ export interface SwiperProps {
   };
   /** 整屏滑动（一屏多卡片时设置是否整屏滑动） */
   pagingEnabled?: boolean | PagingType;
-  /** 惯性滚动（默认惯性滚动结束才定位位置，若想手指离开就定位，设置为`MomentumType.no`） */
+  /** 惯性滚动（默认手指离开就定位，若想惯性滚动结束才定位，可设置为`MomentumType.complete`） */
   momentum?: MomentumType;
 }
 

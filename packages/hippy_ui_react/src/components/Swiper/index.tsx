@@ -27,7 +27,7 @@ export class Swiper extends Component<SwiperProps, SwiperState> {
     scrollEnabled: true,
     cardPosition: SwiperCardPosition.center,
     spacing: { between: 0, startAndEnd: 0 },
-    momentum: MomentumType.complete,
+    momentum: MomentumType.no,
   };
 
   static defaultIndicator: Partial<IndicatorProps> = {
