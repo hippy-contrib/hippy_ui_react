@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.10 (2024-07-17)
+
+
+### Bug Fixes
+
+* slider style ([195225e](https://github.com/hippy-contrib/hippy_ui_react/commit/195225e14b7212c7916e68ede002e43fafececcf))
+
+
+
+
+
 ## 1.2.9 (2024-07-17)
 
 
