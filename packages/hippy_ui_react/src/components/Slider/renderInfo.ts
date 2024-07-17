@@ -33,7 +33,7 @@ export default function getRenderInfo(params: SliderRenderParams): SliderRenderI
         ..._style,
         // size优先级最高
         paddingHorizontal: blockSize ? blockSize / 2 : _style.paddingHorizontal || sliderWrapStyle.paddingHorizontal,
-        height: blockSize || _style.height || sliderWrapStyle.height,
+        height: _style.height || blockSize || sliderWrapStyle.height,
         opacity: disabled ? 0.5 : 1,
       },
     },
