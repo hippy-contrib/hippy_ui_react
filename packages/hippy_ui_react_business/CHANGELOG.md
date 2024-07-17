@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.9 (2024-07-17)
+
+
+### Bug Fixes
+
+* swpier默认不惯性滚动 ([014babf](https://github.com/hippy-contrib/hippy_ui_react/commit/014babf238429bc01cb81338b58d140dd980caf1))
+
+
+
+
+
 ## 1.2.8 (2024-07-16)
 
 **Note:** Version bump only for package hippy_ui_react_business
