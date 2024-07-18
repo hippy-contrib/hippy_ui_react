@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.12 (2024-07-18)
+
+
+### Bug Fixes
+
+* tabs add onclick ([f57d275](https://github.com/hippy-contrib/hippy_ui_react/commit/f57d275827865f166c7de2b6e801798a7e6a2c29))
+
+
+
+
+
 ## 1.2.11 (2024-07-18)
 
 
