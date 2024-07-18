@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.11 (2024-07-18)
+
+
+### Bug Fixes
+
+* slider add onChangeEnd ([1b1f4dd](https://github.com/hippy-contrib/hippy_ui_react/commit/1b1f4dd97c8836f6d6339d0c735be00f7ee4aa47))
+
+
+
+
+
 ## 1.2.10 (2024-07-17)
 
 
