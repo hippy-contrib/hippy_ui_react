@@ -196,8 +196,8 @@ export class Slider extends Component<SliderProps, SliderState> {
     // 把点击坐标转换为容器坐标
     const _x = x - sliderX;
     // 中心点
-    const blockLeftX = this.blockLeftX + (blockSize/2);
-    const blockRightX = this.blockRightX + (blockSize/2);
+    const blockLeftX = this.blockLeftX + blockSize / 2;
+    const blockRightX = this.blockRightX + blockSize / 2;
     // 只有一个滑块，则是end
     if (isDoubleBlock && sliderWidth) {
       // 如果是整个容器响应事件，则判断离那个滑块近
@@ -211,11 +211,11 @@ export class Slider extends Component<SliderProps, SliderState> {
       } else {
         // 判断点击的是哪个滑块
         // 判断点击的位置是否在滑块blockSize之内
-        if (Math.abs(blockRightX - _x) <= (blockSize / 2)) {
+        if (Math.abs(blockRightX - _x) <= blockSize / 2) {
           return EventOriginType.end;
-        } else if (Math.abs(blockLeftX - _x) <= (blockSize / 2)) {
+        } else if (Math.abs(blockLeftX - _x) <= blockSize / 2) {
           return EventOriginType.start;
-        };
+        }
         // 未选中滑块
         return null;
       }
@@ -224,7 +224,7 @@ export class Slider extends Component<SliderProps, SliderState> {
       if (contentOnEvent) {
         return EventOriginType.end;
       } else {
-        if (Math.abs(blockRightX - _x) <= (blockSize / 2)) {
+        if (Math.abs(blockRightX - _x) <= blockSize / 2) {
           return EventOriginType.end;
         }
         // 未选中滑块
@@ -284,12 +284,12 @@ export class Slider extends Component<SliderProps, SliderState> {
       const style: { left?: number; right?: number } =
         this.blockType === EventOriginType.start
           ? {
-            // 需要减去滑块自身的seiz/2
-            left: lineLeft + ((toNum - limitValues[0]) / allNumLen) * lineWidth - blockSize / 2,
-          }
+              // 需要减去滑块自身的seiz/2
+              left: lineLeft + ((toNum - limitValues[0]) / allNumLen) * lineWidth - blockSize / 2,
+            }
           : {
-            right: lineRight + ((limitValues[1] - toNum) / allNumLen) * lineWidth - blockSize / 2,
-          };
+              right: lineRight + ((limitValues[1] - toNum) / allNumLen) * lineWidth - blockSize / 2,
+            };
 
       if (isWeb()) {
         if (this.blockType === EventOriginType.start) {
@@ -320,6 +320,10 @@ export class Slider extends Component<SliderProps, SliderState> {
 
   onTouchEnd = (event: Partial<TouchableEvent>) => {
     if (this.moveToNum !== null) {
+      this.props.onChangeEnd?.({
+        start: this.blockType === EventOriginType.start ? this.moveToNum : this.startValues.startValue,
+        end: this.blockType === EventOriginType.end ? this.moveToNum : this.startValues.endValue,
+      });
       if (this.blockType === EventOriginType.start) {
         this.setState({ ...this.state, startValue: this.moveToNum });
       } else {

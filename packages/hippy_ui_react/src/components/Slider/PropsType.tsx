@@ -31,8 +31,10 @@ export interface SliderProps {
   blockStyle?: GenericStyleProp<ViewStyle>;
   /** 滑动块图片 */
   blockImage?: string;
-  /** 状态变更 */
+  /** 状态变更（每次move都会触发） */
   onChange?: (data: { start: number; end: number }) => void;
+  /** 状态变更完成（触摸结束后触发） */
+  onChangeEnd?: (data: { start: number; end: number }) => void;
 }
 
 export interface SliderState {
