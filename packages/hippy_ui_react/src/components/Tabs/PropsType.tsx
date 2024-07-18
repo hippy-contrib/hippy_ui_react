@@ -54,6 +54,8 @@ export interface TabsProps {
   initialContentOffset?: number;
   /** 自定义 item 渲染 */
   renderItem?: (params: TabRenderItemParams) => ReactNode;
+  /** 点击外层容器 */
+  onClick?: () => void;
 }
 
 export interface TabsState {

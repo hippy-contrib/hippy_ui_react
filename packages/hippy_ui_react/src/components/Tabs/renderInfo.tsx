@@ -10,7 +10,7 @@ export default function getRenderInfo(params: TabsRenderParams): TabsRenderInfo 
   const {
     consumerValue: { renderInfo, themeConfig: _themeConfig },
     state: { activeIndex },
-    props: { values, style, itemStyleFn, activeStyleFn, underlineStyleFn, badgeList, initialContentOffset },
+    props: { values, style, itemStyleFn, activeStyleFn, underlineStyleFn, badgeList, initialContentOffset, onClick },
   } = params;
 
   const themeConfig = { ...tabsConfig, ..._themeConfig };
@@ -19,6 +19,7 @@ export default function getRenderInfo(params: TabsRenderParams): TabsRenderInfo 
       ...themeConfig.tabsProps,
       initialContentOffset,
       style: transferStyle([themeConfig.tabsProps.style, style]),
+      onClick,
     },
     itemPropsList: values.map((v, i) => {
       const isActive = activeIndex === i;
