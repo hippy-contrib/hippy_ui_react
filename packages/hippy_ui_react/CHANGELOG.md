@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.13 (2024-07-24)
+
+
+### Bug Fixes
+
+* Tabs支持onScroll ([f7be2dd](https://github.com/hippy-contrib/hippy_ui_react/commit/f7be2ddb9dedcd2ac23876bb94bdda343349eeb1))
+
+
+
+
+
 ## 1.2.12 (2024-07-18)
 
 
