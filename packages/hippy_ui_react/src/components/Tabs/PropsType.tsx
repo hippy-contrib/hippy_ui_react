@@ -56,6 +56,13 @@ export interface TabsProps {
   renderItem?: (params: TabRenderItemParams) => ReactNode;
   /** 点击外层容器 */
   onClick?: () => void;
+  /** 滚动事件 */
+  onScroll?: (evt: {
+    contentOffset: {
+      x: number;
+      y: number;
+    };
+  }) => void;
 }
 
 export interface TabsState {
