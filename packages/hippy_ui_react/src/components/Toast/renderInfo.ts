@@ -1,6 +1,7 @@
 import { TextStyle, ViewStyle } from '@hippy/react';
 import { ToastRenderInfo, ToastRenderParams, toastConfig } from './config';
 import { pickTextStyle, transferStyle, UtilStyles } from '../../utils/Styles';
+import { isDoc, isWeb } from 'hippy_ui_react';
 
 /** Toast：获取渲染信息 */
 export default function getRenderInfo(params: ToastRenderParams): ToastRenderInfo {
@@ -37,8 +38,10 @@ function getStyles(params: ToastRenderParams) {
   const themeConfig = { ...toastConfig, ..._themeConfig };
   const maskStyle: ViewStyle = {
     ...UtilStyles.mask,
+    position: isWeb() && !isDoc() ? ('fixed' as any) : 'absolute',
     justifyContent: 'center',
     zIndex: themeConfig.zIndexToast,
+    ...themeConfig.toastMaskStyle,
   };
   const mainStyle: ViewStyle = transferStyle([themeConfig.toastStyle, style]);
 

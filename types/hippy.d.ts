@@ -14,8 +14,9 @@ import {
   AnimationDirection,
   TouchEvent,
 } from '@types/hippy__react';
-
 export * from "@types/hippy__react";
+
+declare const __DOC__;
 
 export type ViewStyle = HippyViewStyle & Record<string, any>;
 export type TextStyle = TextTextStyle & Record<string, any>;

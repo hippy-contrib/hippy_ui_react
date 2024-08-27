@@ -225,6 +225,10 @@ export function isWeb() {
   return (Platform.OS as string) === 'web';
 }
 
+export function isDoc() {
+  return typeof __DOC__ !== 'undefined' && __DOC__;
+}
+
 /**
  * 工具：判断是否pc
  * */

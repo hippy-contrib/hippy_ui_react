@@ -1,8 +1,9 @@
 import React from 'react';
-import { Platform, View } from '@hippy/react';
+import { Platform, View, ViewStyle } from '@hippy/react';
 import { MaskRenderInfo, MaskRenderParams, maskConfig } from './config';
 import { transferStyle, UtilStyles } from '../../utils/Styles';
 import { MaskProps } from './PropsType';
+import { extendObj, isDoc, isWeb } from '../../utils/Utils';
 
 /** Mask：获取渲染信息 */
 export default function getRenderInfo(params: MaskRenderParams): MaskRenderInfo {
@@ -10,7 +11,7 @@ export default function getRenderInfo(params: MaskRenderParams): MaskRenderInfo 
     consumerValue: { themeConfig: _themeConfig, renderInfo },
     props,
   } = params;
-  const themeConfig = { ...maskConfig, ..._themeConfig };
+  const themeConfig = extendObj(maskConfig, _themeConfig);
   // ios外层无障碍设置会阻断里面，这里拆出一个View
   const { accessible, accessibilityLabel, style, ...viewProps } = props as MaskProps;
   const isIos = Platform.OS === 'ios';
@@ -19,7 +20,15 @@ export default function getRenderInfo(params: MaskRenderParams): MaskRenderInfo 
       ...themeConfig.maskProps,
       ...viewProps,
       ...(isIos ? null : { accessible, accessibilityLabel }),
-      style: transferStyle([{ zIndex: themeConfig.zIndexMask }, themeConfig.maskProps.style, style]),
+      style: transferStyle([
+        {
+          zIndex: themeConfig.zIndexMask,
+          ...(UtilStyles.mask as ViewStyle),
+          position: isWeb() && !isDoc() ? 'fixed' : 'absolute',
+        },
+        themeConfig.maskProps.style,
+        style,
+      ]),
     },
     coverView:
       (accessible || accessibilityLabel) && isIos ? (

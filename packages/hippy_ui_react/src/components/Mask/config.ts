@@ -1,6 +1,5 @@
 import { PropsWithChildren, ReactNode } from 'react';
-import { ViewProps, ViewStyle } from '@hippy/react';
-import { UtilStyles } from '../../utils/Styles';
+import { ViewProps } from '@hippy/react';
 import { ConsumerValue } from '../../provider/PropsType';
 import { MaskProps } from './PropsType';
 
@@ -26,7 +25,6 @@ export type RenderInfoMask = (params: MaskRenderParams & { defaultRenderInfo: Ma
 export const maskConfig: ThemeConfigMask = {
   maskProps: {
     style: {
-      ...(UtilStyles.mask as ViewStyle),
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
   },

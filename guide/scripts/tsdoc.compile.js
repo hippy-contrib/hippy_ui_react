@@ -45,7 +45,7 @@ module.exports = {
       // __RN__: false,
       // __TESTUI__: false,
       // __DEV__: true
-      // __DOC__: true
+      __DOC__: true
     })
   ]
 };

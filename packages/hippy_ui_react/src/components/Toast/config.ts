@@ -5,6 +5,7 @@ import { ToastProps, ToastState } from './PropsType';
 
 /** 主题配置：Toast */
 export interface ThemeConfigToast {
+  toastMaskStyle: ViewStyle;
   toastStyle: ViewStyle;
   toastTextStyle: TextStyle;
 }
@@ -26,6 +27,7 @@ export type RenderInfoToast = (params: ToastRenderParams & { defaultRenderInfo: 
  * Toast 组件
  */
 export const toastConfig: ThemeConfigToast = {
+  toastMaskStyle: {},
   toastStyle: {
     marginHorizontal: 20,
     alignSelf: 'center',
