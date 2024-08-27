@@ -1,4 +1,4 @@
-import React, { Component, ReactElement } from 'react';
+import React, { Component, ReactElement, PropsWithChildren } from 'react';
 import { View } from '@hippy/react';
 import { GlobalViewMaskInfo, MaskProps } from './PropsType';
 import Consumer from '../../provider/Consumer';
@@ -16,7 +16,7 @@ let GLOBAL_VIEW_MASK_LIST: GlobalViewMaskInfo[] = [];
  * - 带有默认样式的`View`组件
  * @visibleName Mask 蒙层
  */
-export class Mask extends Component<MaskProps, {}> {
+export class Mask extends Component<PropsWithChildren<MaskProps>, {}> {
   /**
    * 显示Mask
    * @param view 插入的视图
