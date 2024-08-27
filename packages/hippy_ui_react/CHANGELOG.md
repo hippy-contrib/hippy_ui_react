@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.15 (2024-08-27)
+
+
+### Bug Fixes
+
+* mask props children ([bd12c58](https://github.com/hippy-contrib/hippy_ui_react/commit/bd12c58b7c15bf0871fc145e33b7d53750cde401))
+
+
+
+
+
 ## 1.2.14 (2024-08-27)
 
 
