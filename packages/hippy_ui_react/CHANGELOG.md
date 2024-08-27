@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.14 (2024-08-27)
+
+
+### Bug Fixes
+
+* add __DOC__ ([5253c07](https://github.com/hippy-contrib/hippy_ui_react/commit/5253c07a12b5c26656e60ad12e27be1b4353a4c5))
+
+
+
+
+
 ## 1.2.13 (2024-07-24)
 
 
