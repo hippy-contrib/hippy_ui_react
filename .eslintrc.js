@@ -65,5 +65,6 @@ module.exports = {
       "no-template-curly-in-string": "off",
       "@typescript-eslint/consistent-type-imports": ["error", { prefer: "no-type-imports" }],
       "@typescript-eslint/consistent-type-exports": "off",
+      "@typescript-eslint/naming-convention": "off",
     }
 }
