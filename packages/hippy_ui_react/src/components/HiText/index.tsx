@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropsWithChildren } from 'react';
 import { Text } from '@hippy/react';
 import { HiTextColor, HiTextProps, HiTextWeight } from './PropsType';
 import Consumer from '../../provider/Consumer';
@@ -8,7 +8,7 @@ import getRenderInfo from './renderInfo';
  * - 继承自`Text`的组件
  * @visibleName HiText 文本
  */
-export class HiText extends Component<HiTextProps, {}> {
+export class HiText extends Component<PropsWithChildren<HiTextProps>, {}> {
   static weight = HiTextWeight;
   static color = HiTextColor;
 
