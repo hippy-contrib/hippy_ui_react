@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.16 (2024-08-28)
+
+
+### Bug Fixes
+
+* PropsWithChildren ([ca6cc7e](https://github.com/hippy-contrib/hippy_ui_react/commit/ca6cc7ecf12e4ca73cefb4853fd65d5dda88ff0a))
+
+
+
+
+
 ## 1.2.15 (2024-08-27)
 
 
