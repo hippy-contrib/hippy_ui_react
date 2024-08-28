@@ -1,4 +1,4 @@
-import React, { Component, isValidElement, cloneElement } from 'react';
+import React, { Component, isValidElement, cloneElement, PropsWithChildren } from 'react';
 import { View } from '@hippy/react';
 import {
   getProviderValue,
@@ -16,7 +16,7 @@ import { ConfigCommon, setConfigCommon } from './ConfigCommon';
 /**
  * @visibleName Provider 全局模式
  */
-export default class Provider extends Component<ProviderProps, ProviderState> {
+export default class Provider extends Component<PropsWithChildren<ProviderProps>, ProviderState> {
   state: ProviderState = {
     globalViews: {},
   };
