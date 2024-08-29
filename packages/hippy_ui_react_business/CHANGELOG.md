@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.18 (2024-08-29)
+
+
+### Bug Fixes
+
+* button style ([8fedcb6](https://github.com/hippy-contrib/hippy_ui_react/commit/8fedcb6cd13dd8fe10fa7ad51572db1a911009e2))
+
+
+
+
+
 ## 1.2.17 (2024-08-29)
 
 
