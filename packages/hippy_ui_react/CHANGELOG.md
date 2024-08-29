@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.17 (2024-08-29)
+
+
+### Bug Fixes
+
+* 限制provider监听唯一 ([662eec9](https://github.com/hippy-contrib/hippy_ui_react/commit/662eec93be153c74dc3f19a56211e0628c505891))
+
+
+
+
+
 ## 1.2.16 (2024-08-28)
 
 
