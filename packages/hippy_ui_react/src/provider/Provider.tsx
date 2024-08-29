@@ -22,7 +22,8 @@ export default class Provider extends Component<PropsWithChildren<ProviderProps>
   };
 
   componentDidMount() {
-    if (!this.props.noGlobalView) {
+    if (!this.props.noGlobalView && !Provider.hasListenGlobalView) {
+      Provider.hasListenGlobalView = true;
       HRUEvent.on(HRU_EVENT_GLOBAL_VIEW, this.listenGlobalView);
       ConfigCommon.commonListenBackAdd?.(this.backToCloseGlobalView);
     }
@@ -41,6 +42,11 @@ export default class Provider extends Component<PropsWithChildren<ProviderProps>
   static updateGlobalView(params: UpdateGlobalViewData) {
     HRUEvent.emit(HRU_EVENT_GLOBAL_VIEW, params);
   }
+
+  /**
+   * 记录已经监听全局节点插入事件
+   * */
+  static hasListenGlobalView = false;
 
   // state更新不及时，这里用变量来记录最新值
   private realTimeGlobalViews: UpdateGlobalViewData = {};
