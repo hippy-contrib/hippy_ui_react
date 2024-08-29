@@ -14,7 +14,7 @@ export interface LoadingTipProps {
   /** 加载状态：LoadingTip.status */
   status: LoadingTipStatus;
   /** 是否已有数据（没有会显示Empty组件） */
-  hasData: number | boolean;
+  hasData: number | boolean | undefined | null;
   /** 点击事件 */
   onPress?: () => void;
   /** 文案：空数据 */
