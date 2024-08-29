@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.19 (2024-08-29)
+
+
+### Bug Fixes
+
+* loadingTip hasData ([e512887](https://github.com/hippy-contrib/hippy_ui_react/commit/e512887f90f5ce4c84222f554cbc745751cd3806))
+
+
+
+
+
 ## 1.2.18 (2024-08-29)
 
 
