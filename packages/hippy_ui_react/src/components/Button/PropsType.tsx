@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { GenericStyleProp, ViewStyle } from '@hippy/react';
+import { GenericStyleProp, Style } from '@hippy/react';
 import { ThemeMode } from '../../themeConfig';
 
 export enum ButtonType {
@@ -32,7 +32,7 @@ export interface ButtonProps {
   /** 设置前置图片 */
   image?: string | ReactNode;
   /** 自定义样式（可设置文字样式，会被透传下去） */
-  style?: GenericStyleProp<ViewStyle>;
+  style?: GenericStyleProp<Style>;
   /** 是否开启点击特效 */
   activeStyle?: boolean;
   /** 是否圆角按钮 */
