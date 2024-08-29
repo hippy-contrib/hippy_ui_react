@@ -11,7 +11,7 @@ export interface PopupProps {
   /** 遮罩无障碍阅读文本 */
   maskAccessibilityLabel?: string;
   /** 点击蒙层事件 */
-  onMaskClick?: () => void | boolean;
+  onMaskClick?: (e?: any) => void | boolean;
   /** 半屏完全展示通知 */
   onShow?: () => void;
   /** 是否使用动画 */
