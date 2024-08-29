@@ -51,18 +51,18 @@ class Toast extends Component<ToastProps, ToastState> {
    * @param text 文本
    * @param props toast属性
    * */
-  static show(text: ToastProps['text'], props?: Partial<ToastProps>) {
+  static show(text: ToastProps['text'] | ToastProps, props?: Partial<ToastProps>) {
+    const _props = typeof text === 'string' ? { text, ...props } : { ...text, ...props };
     Provider.updateGlobalView({
       [GLOBAL_VIEW_KEY_TOAST]: {
         data: [
           {
             view: (
               <Toast
-                text={text}
-                {...props}
+                {..._props}
                 onHide={() => {
                   Toast.hide();
-                  props?.onHide?.();
+                  _props.onHide?.();
                 }}
               />
             ),
