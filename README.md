@@ -29,9 +29,17 @@ npm install hippy_ui_react
 
 H5请设置`@hippy/react`别名为`@hippy/react-web`：
 ```js static
+// hippyReactWeb.js
+export * from '@hippy/react-web';
+export const UIManagerModule = {};
+export const BackAndroid = {};
+export const colorParse = () => '';
+```
+
+```js static
 module.exports = {
   alias: {
-    "@hippy/react": path.resolve(__dirname, "./node_modules/@hippy/react-web")
+    "@hippy/react": path.resolve(__dirname, "./lib/hippyReactWeb.js")
   }
 }
 ```
