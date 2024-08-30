@@ -85,18 +85,15 @@ export class Popup extends Component<PopupProps, PopupState> {
   };
 
   animateShow = () => {
-    console.log('===animateShow');
     if (this.slideManager) {
       this.slideManager
         .show()
         .then(() => {
-          console.log('===show1');
           this.animateHasEnd = true;
           this.props.onShow?.();
         })
         .catch(() => {});
     } else {
-      console.log('===show2');
       this.animateHasEnd = true;
       this.props.onShow?.();
     }
