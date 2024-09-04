@@ -19,7 +19,7 @@ export * from "@types/hippy__react";
 declare const __DOC__;
 
 export type ViewStyle = HippyViewStyle & Record<string, any>;
-export type TextStyle = TextTextStyle & Record<string, any>;
+export type TextStyle = TextTextStyle & {lineHeight?: number | string} & Record<string, any>;
 export type Style = HippyStyle & Record<string, any>;
 export type TextProps = HippyTextProps & {
   style?: GenericStyleProp<TextStyle>;

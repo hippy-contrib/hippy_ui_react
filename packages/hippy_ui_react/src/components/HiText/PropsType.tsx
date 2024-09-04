@@ -16,13 +16,13 @@ export enum HiTextColor {
 
 export interface HiTextProps extends TextProps {
   /** 字体大小，fontSize，默认：15 */
-  size?: TextStyle['fontSize'];
+  size?: TextStyle['fontSize'] | string;
   /** 字体粗细，fontWeight（HiTextWeight中的值是组件对粗细的定义，默认：bold-600,medium-500,regular-400） */
   weight?: HiTextWeight | TextStyle['fontWeight'];
   /** 字体颜色 */
   color?: HiTextColor | TextStyle['color'];
   /** lineHeight */
-  lineHeight?: TextStyle['lineHeight'];
+  lineHeight?: TextStyle['lineHeight'] | string;
   /** textAlign */
   textAlign?: TextStyle['textAlign'];
   /** 主题模式 */

@@ -77,6 +77,7 @@ function getStyles(params: HiTextRenderParams) {
     textStyle.fontSize = size;
   }
   if (lineHeight) {
+    // @ts-expect-error
     textStyle.lineHeight = lineHeight;
   }
   if (weight) {
