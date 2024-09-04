@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.21 (2024-09-04)
+
+
+### Bug Fixes
+
+* HiText兼容web单位 ([42593d7](https://github.com/hippy-contrib/hippy_ui_react/commit/42593d75703a479509bacf24f60e7fd9d1a421a2))
+
+
+
+
+
 ## 1.2.20 (2024-08-30)
 
 
