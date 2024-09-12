@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.22 (2024-09-12)
+
+
+### Bug Fixes
+
+* mask.hide key ([f241914](https://github.com/hippy-contrib/hippy_ui_react/commit/f241914e7e8daa5c9e2c643140014abaf2d56b5b))
+
+
+
+
+
 ## 1.2.21 (2024-09-04)
 
 
