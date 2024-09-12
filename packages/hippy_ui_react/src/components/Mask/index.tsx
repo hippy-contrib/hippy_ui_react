@@ -59,7 +59,7 @@ export class Mask extends Component<PropsWithChildren<MaskProps>, {}> {
   /**
    * 收起Mask
    * */
-  static hide(options?: { key: string }) {
+  static hide(options?: { key?: string }) {
     const { key = 'default' } = options || {};
     if (!key) {
       GLOBAL_VIEW_MASK_LIST = [];
