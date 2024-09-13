@@ -53,7 +53,9 @@ class Toast extends Component<ToastProps, ToastState> {
    * */
   static show(text: ToastProps['text'] | ToastProps, props?: Partial<ToastProps>) {
     const _props =
-      typeof text === 'string' ? { text, ...(props || {}) } : { ...(text as ToastProps), ...(props || {}) };
+      typeof text === 'string' || isValidElement(text)
+        ? { text, ...(props || {}) }
+        : { ...(text as ToastProps), ...(props || {}) };
     Provider.updateGlobalView({
       [GLOBAL_VIEW_KEY_TOAST]: {
         data: [
