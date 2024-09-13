@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.23 (2024-09-13)
+
+
+### Bug Fixes
+
+* toast.show ([1decaab](https://github.com/hippy-contrib/hippy_ui_react/commit/1decaab1062db2cb9a1b8c0058534fb8191beac5))
+
+
+
+
+
 ## 1.2.22 (2024-09-12)
 
 
