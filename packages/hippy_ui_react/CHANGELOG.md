@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.24 (2024-09-14)
+
+
+### Bug Fixes
+
+* navigar theme ([cfe3669](https://github.com/hippy-contrib/hippy_ui_react/commit/cfe366946e2a4bad2098cb05d12e218584b6b90a))
+
+
+
+
+
 ## 1.2.23 (2024-09-13)
 
 
