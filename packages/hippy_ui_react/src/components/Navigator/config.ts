@@ -48,7 +48,7 @@ export const navigatorConfig: ThemeConfigNavigator = {
   navigatorBackPropsFn: (params) => {
     const {
       consumerValue: { theme },
-      props: { back },
+      props: { back, theme: propsTheme },
     } = params;
     const uriWhite =
       'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAkUExURUdwTP///////////////////////////////////////////xR6XWcAAAALdFJOUwDdIIFfMO9IoxBvT6WWbwAAAKhJREFUOMvN07EOAUEUheEba4NOdLINtUYp2Ual0dB4A5VGr9HqPIJaJyNWnJez+vNLJIqd8p58xZw7E9GQ07uOfDDW0M5bhe4AVAFQH8DtDODkwFp6unm+k44u2HwBUxcspOTmbQFY/gpKABmBiaDvg3QJEAMbdOvC/bZLItmfyTagrccqoF9/+069wnnA0l82yAuo+PMSEz12JhWRRD+qgj8420fDzxvSrEzZSe8rLgAAAABJRU5ErkJggg==';
@@ -57,7 +57,7 @@ export const navigatorConfig: ThemeConfigNavigator = {
     return {
       accessible: true,
       accessibilityLabel: '返回 按钮',
-      source: { uri: typeof back === 'string' ? back : theme === ThemeMode.dark ? uriWhite : uriBlack },
+      source: { uri: typeof back === 'string' ? back : (propsTheme || theme) === ThemeMode.dark ? uriWhite : uriBlack },
       style: {
         width: 24,
         height: 24,
@@ -65,9 +65,10 @@ export const navigatorConfig: ThemeConfigNavigator = {
       },
     };
   },
-  navigatorTitlePropsFn: () => {
+  navigatorTitlePropsFn: (params) => {
     return {
       numberOfLines: 1,
+      theme: params.props.theme,
       style: {
         flex: 1,
         flexShrink: 1,
