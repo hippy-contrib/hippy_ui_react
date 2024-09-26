@@ -70,7 +70,7 @@ function getStyles(params: HiTextRenderParams) {
       textStyle.overflowWrap = 'break-word';
       textStyle.whiteSpace = numberOfLines === 1 ? 'nowrap' : 'pre-wrap';
     } else {
-      textStyle.lineClamp = 'inherit';
+      textStyle.lineClamp = 'initial';
     }
   }
   if (size) {
