@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.25 (2024-10-09)
+
+
+### Bug Fixes
+
+* popup style.height ([9d95957](https://github.com/hippy-contrib/hippy_ui_react/commit/9d959576249b99f9e8f06a3e55e122ecba290481))
+
+
+
+
+
 ## 1.2.24 (2024-09-14)
 
 
