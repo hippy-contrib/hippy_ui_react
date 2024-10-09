@@ -29,8 +29,9 @@ export class Popup extends Component<PopupProps, PopupState> {
     const { animationOption, style, animated } = props;
     if (animated) {
       this.animateHasEnd = false;
+      const userHeight = transferStyle(style).height;
       this.slideManager = getSlideManager({
-        startValue: transferStyle(style).height || WINDOW_HEIGHT(),
+        startValue: userHeight && typeof userHeight === 'number' ? userHeight : WINDOW_HEIGHT(),
         toValue: 0,
         ...Popup.defaultAnimation,
         ...animationOption,
