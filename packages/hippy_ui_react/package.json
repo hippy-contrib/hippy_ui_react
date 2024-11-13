@@ -5,7 +5,6 @@
   "keywords": [],
   "author": "linjinze999 <linjinze999@163.com>",
   "license": "MIT",
-  "type": "module",
   "main": "./lib/index.js",
   "module": "./lib/index.js",
   "browser": "./lib/index.js",
