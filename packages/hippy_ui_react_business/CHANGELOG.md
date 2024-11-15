@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.27 (2024-11-15)
+
+
+### Bug Fixes
+
+* 放大模式和国际化 ([1e2e51f](https://github.com/hippy-contrib/hippy_ui_react/commit/1e2e51fe6a2109745b05a92594a566d27164e1e2))
+
+
+
+
+
 ## 1.2.26 (2024-11-13)
 
 
