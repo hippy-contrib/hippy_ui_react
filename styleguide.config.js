@@ -24,6 +24,14 @@ module.exports = {
       content: "./guide/Provider.md",
     },
     {
+      name: "国际化",
+      content: "./guide/I18n.md",
+    },
+    {
+      name: "放大模式",
+      content: "./guide/Scale.md",
+    },
+    {
       name: "色彩",
       content: "./guide/Color.md"
     },

@@ -367,7 +367,7 @@ export class Slider extends Component<SliderProps, SliderState> {
                 this.setState({ ...this.state, sliderWidth: e.layout.width });
               }}
               accessible={!disabled}
-              accessibilityLabel={`${limitValues[0]}到${limitValues[1]}`}
+              accessibilityLabel={`${limitValues[0]}~${limitValues[1]}`}
               {...this.getEvents()}
             >
               <View {...lineProps} />

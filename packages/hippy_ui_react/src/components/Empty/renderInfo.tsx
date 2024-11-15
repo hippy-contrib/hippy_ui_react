@@ -3,15 +3,17 @@ import { Image } from '@hippy/react';
 import HiText from '../HiText';
 import { transferStyle } from '../../utils/Styles';
 import { EmptyRenderInfo, EmptyRenderParams, emptyConfig } from './config';
+import { ThemeConfig } from '../../themeConfig';
 
 /** Empty：获取渲染信息 */
 export default function getRenderInfo(params: EmptyRenderParams): EmptyRenderInfo {
   const {
     consumerValue: { themeConfig: _themeConfig, renderInfo },
-    props: { onPress, style, image, desc },
+    props,
   } = params;
+  const themeConfig: ThemeConfig = { ...emptyConfig, ..._themeConfig };
+  const { onPress, style, image, desc = themeConfig.emptyTxtDesc } = props;
 
-  const themeConfig = { ...emptyConfig, ..._themeConfig };
   const result: EmptyRenderInfo = {
     wrapProps: {
       ...themeConfig.emptyWrap,

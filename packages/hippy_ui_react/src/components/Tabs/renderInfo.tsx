@@ -40,9 +40,9 @@ export default function getRenderInfo(params: TabsRenderParams): TabsRenderInfo 
         ...activeProps,
         accessible: true,
         accessibilityLabel:
-          (isActive && values.length > 1 ? '已选中 ' : '') +
+          (isActive && values.length > 1 ? `${themeConfig.commonTxtChecked} ` : '') +
           Tabs.getTabInfo(v).text +
-          (values.length > 1 ? ' 按钮' : ''),
+          (values.length > 1 ? ` ${themeConfig.commonTxtBtn}` : ''),
         style: transferStyle([
           { color: themeConfig.colorTextSecondary, fontWeight: themeConfig.hiTextWeightRegular },
           themeConfig.tabsItemProps.style,

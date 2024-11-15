@@ -9,6 +9,7 @@ export interface ThemeConfigEmpty {
   emptyWrap: ViewProps;
   emptyImg: ImageProps;
   emptyText: HiTextProps;
+  emptyTxtDesc: ReactNode;
 }
 
 /** 自定义渲染：空状态 */
@@ -49,4 +50,5 @@ export const emptyConfig: ThemeConfigEmpty = {
       marginTop: 15,
     },
   },
+  emptyTxtDesc: '数据为空',
 };

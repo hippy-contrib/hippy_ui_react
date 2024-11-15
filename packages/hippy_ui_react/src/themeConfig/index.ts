@@ -13,6 +13,7 @@ import { RenderInfoUImage, ThemeConfigUImage } from '../components/UImage/config
 import { RenderInfoListItem, ThemeConfigListItem } from '../components/ListItem/config';
 import { ThemeConfigLoadingGif } from '../components/LoadingGif/config';
 import { RenderInfoLoading, ThemeConfigLoading } from '../components/Loading/config';
+import { ThemeConfigLoadingTip } from '../components/LoadingTip/config';
 import { RenderInfoDivider, ThemeConfigDivider } from '../components/Divider/config';
 import { RenderInfoSearch, ThemeConfigSearch } from '../components/Search/config';
 import { RenderInfoIndicator, ThemeConfigIndicator } from '../components/Indicator/config';
@@ -49,6 +50,7 @@ export type ThemeConfig = ThemeConfigCommon &
       ThemeConfigListItem &
       ThemeConfigLoadingGif &
       ThemeConfigLoading &
+      ThemeConfigLoadingTip &
       ThemeConfigDivider &
       ThemeConfigSearch &
       ThemeConfigIndicator &
