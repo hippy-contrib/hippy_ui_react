@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.28 (2024-12-05)
+
+
+### Bug Fixes
+
+* uimage onerror ([b77cb49](https://github.com/hippy-contrib/hippy_ui_react/commit/b77cb492a703091e6c625c4e57f9b0ec998c8d8b))
+
+
+
+
+
 ## 1.2.27 (2024-11-15)
 
 
