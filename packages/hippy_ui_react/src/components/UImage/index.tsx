@@ -16,18 +16,22 @@ export class UImage extends Component<UImageProps, UImageState> {
     };
   }
 
-  componentDidUpdate(prevProps: UImageProps) {
-    if (prevProps.src !== this.props.src) {
+  shouldComponentUpdate(nextProps: Readonly<UImageProps>, nextState: Readonly<UImageState>, nextContext: any): boolean {
+    if (this.props.src !== nextProps.src) {
       // 检测到图片有更新，需要重新加载
       this.state.isError &&
         this.setState({
           isError: false,
         });
       this.isLoad = false;
+      this.androidIgnoreLoadEnd =
+        Platform.OS === 'android' && this.props.src.startsWith('http') && !nextProps.src.startsWith('http');
     }
+    return true;
   }
 
   private isLoad: boolean;
+  private androidIgnoreLoadEnd = false; // 安卓http切base64会马上触发一个onLoadEnd导致走到错误逻辑
   static resizeMode = Image.resizeMode;
 
   onError = (e) => {
@@ -45,6 +49,10 @@ export class UImage extends Component<UImageProps, UImageState> {
   };
 
   onLoadEnd = () => {
+    if (this.androidIgnoreLoadEnd) {
+      this.androidIgnoreLoadEnd = false;
+      return;
+    }
     if (!this.isLoad && !this.state.isError) {
       this.setState({
         isError: true,
