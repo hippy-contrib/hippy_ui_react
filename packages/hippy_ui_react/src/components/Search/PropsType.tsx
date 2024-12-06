@@ -10,6 +10,8 @@ export interface SearchProps {
   rightIcon?: ReactNode;
   /** 清空图标 */
   clearIcon?: Partial<ImageProps> | ReactNode;
+  /** 点击清空回调 */
+  onClear?: () => void;
   /** 自定义输入框属性 */
   inputProps?: Partial<TextInputProps>;
   /** 尾部插入节点 */

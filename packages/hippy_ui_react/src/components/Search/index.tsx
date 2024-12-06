@@ -25,13 +25,18 @@ export class Search extends Component<SearchProps, SearchState> {
    * @param noNextSubmit 不触发下一个submit（web下为`true`）
    * */
   public clear = (noNextSubmit = isWeb()) => {
+    const { onClear, inputProps } = this.props;
     if (noNextSubmit) {
       this.isSubmitByClear = true;
     }
-    this.setState({
-      value: '',
-    });
-    this.refInput?.clear();
+    if (this.state.value) {
+      this.setState({
+        value: '',
+      });
+      this.refInput?.clear();
+      inputProps?.onChangeText?.('');
+    }
+    onClear?.();
   };
 
   /**
