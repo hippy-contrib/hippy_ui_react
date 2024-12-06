@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.30 (2024-12-06)
+
+
+### Bug Fixes
+
+* listItem height ([ac196ed](https://github.com/hippy-contrib/hippy_ui_react/commit/ac196edbb6165d2efb7f3bd381e25be50043f186))
+
+
+
+
+
 ## 1.2.29 (2024-12-06)
 
 
