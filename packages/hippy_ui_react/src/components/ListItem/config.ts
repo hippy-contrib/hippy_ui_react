@@ -135,7 +135,7 @@ export const listItemConfig: ThemeConfigListItem = {
             fontSize: 16,
             flex: 1,
             flexShrink: 1,
-            height: 20,
+            lineHeight: 20,
           },
         };
   },
@@ -148,7 +148,7 @@ export const listItemConfig: ThemeConfigListItem = {
         color: consumerValue.themeConfig.colorTextSecondary,
         flex: 1,
         flexShrink: 1,
-        height: 20,
+        lineHeight: 20,
       },
     };
   },
@@ -161,7 +161,7 @@ export const listItemConfig: ThemeConfigListItem = {
         color: consumerValue.themeConfig.colorTextSecondary,
         flex: 1,
         flexShrink: 1,
-        height: 20,
+        lineHeight: 20,
       },
     };
   },
