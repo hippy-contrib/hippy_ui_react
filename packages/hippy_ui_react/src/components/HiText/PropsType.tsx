@@ -31,4 +31,10 @@ export interface HiTextProps extends TextProps {
   accessible?: boolean;
   /** 无障碍阅读文本 */
   accessibilityLabel?: string;
+  /** 设置Android API 23及以上系统的文本折行策略。
+   * HiText.breakStrategy.simple：简单折行，每一行显示尽可能多的字符，直到这一行不能显示更多字符时才进行换行，这种策略下不会自动折断单词（当一行只有一个单词并且宽度显示不下的情况下才会折断）；
+   * HiText.breakStrategy.high_quality：高质量折行，针对整段文本的折行进行布局优化，必要时会自动折断单词，比其他两种策略略微影响性能，通常比较适合只读文本；
+   * HiText.breakStrategy.balanced：平衡折行，尽可能保证一个段落的每一行的宽度相同，必要时会折断单词。
+   * */
+  breakStrategy?: string;
 }
