@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.31 (2024-12-09)
+
+
+### Bug Fixes
+
+* hiText breakStrategy ([90ef06b](https://github.com/hippy-contrib/hippy_ui_react/commit/90ef06bc21f44e934dd6c1159bafed7f67148ca5))
+
+
+
+
+
 ## 1.2.30 (2024-12-06)
 
 
