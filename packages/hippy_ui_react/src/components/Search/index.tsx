@@ -9,9 +9,12 @@ import { isWeb } from '../../utils/Utils';
  * @visibleName Search 搜索框
  */
 export class Search extends Component<SearchProps, SearchState> {
-  state: SearchState = {
-    value: '',
-  };
+  constructor(props: SearchProps) {
+    super(props);
+    this.state = {
+      value: props.inputProps?.value || props.inputProps?.defaultValue || '',
+    };
+  }
 
   private isSubmitByClear = false;
   public refInput: TextInput | null = null;
@@ -70,6 +73,9 @@ export class Search extends Component<SearchProps, SearchState> {
    * */
   public setValue = (value: string) => {
     this.refInput?.setValue(value);
+    this.setState({
+      value,
+    });
   };
 
   /**
