@@ -1,8 +1,8 @@
 import React, { isValidElement } from 'react';
-import { Image, ViewStyle } from '@hippy/react';
+import { Image, ViewProps, ViewStyle } from '@hippy/react';
 import { SearchRenderInfo, SearchRenderParams, searchConfig } from './config';
 import { transferStyle } from '../../utils/Styles';
-import { getObjectType, ObjectType } from '../../utils/Utils';
+import { getObjectType, isWeb, ObjectType } from '../../utils/Utils';
 
 /** Search：获取渲染信息 */
 export default function getRenderInfo(params: SearchRenderParams): SearchRenderInfo {
@@ -14,6 +14,24 @@ export default function getRenderInfo(params: SearchRenderParams): SearchRenderI
   } = params;
   const themeConfig = { ...searchConfig, ..._themeConfig };
   const { wrapStyle, leftIconStyle, clearIconStyle, inputStyle } = getStyle(params);
+
+  const clearProps: ViewProps & { onMouseDown?: () => void } = isWeb()
+    ? {
+        onMouseDown: (e?: any) => {
+          onClear();
+          (clearIcon as any)?.onMouseDown?.(e);
+        },
+        onPressIn: (e?: any) => {
+          onClear();
+          (clearIcon as any)?.onPressIn?.(e);
+        },
+      }
+    : {
+        onClick(e) {
+          onClear();
+          (clearIcon as any)?.onClear?.(e);
+        },
+      };
 
   const result: SearchRenderInfo = {
     wrapProps: { ...wrapProps, style: wrapStyle },
@@ -32,14 +50,7 @@ export default function getRenderInfo(params: SearchRenderParams): SearchRenderI
           {...themeConfig.searchClearIconPropsFn(params)}
           {...(clearIcon as any)}
           style={clearIconStyle}
-          onMouseDown={(e?: any) => {
-            onClear();
-            (clearIcon as any)?.onMouseDown?.(e);
-          }}
-          onPressIn={(e?: any) => {
-            onClear();
-            (clearIcon as any)?.onPressIn?.(e);
-          }}
+          {...clearProps}
         />
       ),
     inputProps: {
