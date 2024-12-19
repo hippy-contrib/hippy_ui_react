@@ -27,7 +27,7 @@ export default function getRenderInfo(params: SearchRenderParams): SearchRenderI
         },
       }
     : {
-        onClick(e) {
+        onClick(e?: any) {
           onClear();
           (clearIcon as any)?.onClear?.(e);
         },
