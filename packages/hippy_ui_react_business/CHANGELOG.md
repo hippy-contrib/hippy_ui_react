@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.33 (2024-12-19)
+
+
+### Bug Fixes
+
+* Search ios clear ([450a288](https://github.com/hippy-contrib/hippy_ui_react/commit/450a288d985af63281cf237c209c97e621fb41a1))
+
+
+
+
+
 ## 1.2.32 (2024-12-16)
 
 
