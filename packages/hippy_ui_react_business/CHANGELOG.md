@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.34 (2025-09-03)
+
+
+### Bug Fixes
+
+* switch开关方向 ([7259124](https://github.com/hippy-contrib/hippy_ui_react/commit/725912457f692b741256ec258fd1620619064eac))
+
+
+
+
+
 ## 1.2.33 (2024-12-19)
 
 
