@@ -71,7 +71,7 @@ function getStyles(params: SwitchRenderParams) {
       : Object.prototype.hasOwnProperty.call(wrapStyle, 'paddingHorizontal')
         ? wrapStyle.paddingHorizontal
         : wrapStyle.padding) || 0;
-  const translateX = checked ? 0 : wrapStyle.width - paddingLeft - paddingRight - circleStyle.width;
+  const translateX = checked ? wrapStyle.width - paddingLeft - paddingRight - circleStyle.width : 0;
   if (isWeb()) {
     circleStyle.transform = ('translateX(' + translateX + 'px)') as any;
     circleStyle.transition = 'transform 200ms';
