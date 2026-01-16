@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.39](https://github.com/hippy-contrib/hippy_ui_react/compare/hippy_ui_react@1.2.38...hippy_ui_react@1.2.39) (2026-01-16)
+
+
+### Bug Fixes
+
+* 红点 ([9437818](https://github.com/hippy-contrib/hippy_ui_react/commit/9437818118259e425ee08c0189fc0f708b16df93))
+
+
+
+
+
 ## 1.2.38 (2026-01-16)
 
 
