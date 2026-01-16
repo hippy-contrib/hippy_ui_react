@@ -27,5 +27,5 @@
   "scripts": {
     "test": "node ./__tests__/hippy_ui_react.test.js"
   },
-  "gitHead": "a4b3ffecb81d7c7b90f3eb26c47ac389c7608896"
+  "gitHead": "e78dd139c77ef9e2f05f24ecc0f430b4450bb292"
 }
