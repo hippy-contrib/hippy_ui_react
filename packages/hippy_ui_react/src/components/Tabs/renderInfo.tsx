@@ -24,6 +24,7 @@ export default function getRenderInfo(params: TabsRenderParams): TabsRenderInfo 
   } = params;
 
   const themeConfig = { ...tabsConfig, ..._themeConfig };
+  // 结果
   const result: TabsRenderInfo = {
     wrapProps: {
       ...themeConfig.tabsProps,
