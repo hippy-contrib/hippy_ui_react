@@ -40,8 +40,8 @@ export const badgeConfig: ThemeConfigBadge = {
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-    width: 4,
-    height: 4,
+    width: 8,
+    height: 8,
   },
   badgeWithTxtStyle: {
     width: undefined,
@@ -53,8 +53,8 @@ export const badgeConfig: ThemeConfigBadge = {
     height: 14,
   },
   badgeWithChildrenStyle: {
-    marginLeft: -2,
-    top: -2,
+    marginLeft: -4,
+    top: -4,
   },
   badgeTxtWithChildrenStyle: {
     marginLeft: 0,
