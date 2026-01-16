@@ -42,7 +42,7 @@ export default function getRenderInfo(params: BadgeRenderParams): BadgeRenderInf
     isShow = false;
   }
 
-  // 结果值
+  // 结果
   const result: BadgeRenderInfo = {
     badgeProps: {
       style: isShow
