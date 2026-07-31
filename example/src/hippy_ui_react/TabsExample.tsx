@@ -178,14 +178,14 @@ const TabsExample: FC = () => {
         <Tabs values={['测试1', '测试2', '测试3', '测试4']} activeIndex={1} showUnderline={true} />
         {/* 二级：黑色短下划线，宽度=文字宽度一半，选中加粗 */}
         <Tabs
-          values={['点歌', '专属MV', 'AI歌声', '活动', '其他']}
+          values={['选项一', '选项二', '选项三', '选项四', '选项五']}
           activeIndex={0}
           level={Tabs.level.secondary}
           style={{ marginTop: 10 }}
         />
         {/* 三级：无下划线、字号更小、选中加粗 */}
         <Tabs
-          values={['为你推荐', '热歌榜', '飙升榜', '全球榜', '其他']}
+          values={['选项一', '选项二', '选项三', '选项四', '选项五']}
           activeIndex={0}
           level={Tabs.level.tertiary}
           style={{ marginTop: 10 }}
