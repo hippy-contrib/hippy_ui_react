@@ -15,8 +15,6 @@ export interface ThemeConfigTabs {
   tabsItemActiveProps: ViewProps;
   tabsUnderlineProps: ViewProps;
   tabsBadgeProps: BadgeProps;
-  /** 下划线宽度相对 item 内容(文字)宽度的比例（如 0.5 = 文字宽度一半）；不设则用固定宽度 */
-  tabsUnderlineContentRatio?: number;
 }
 
 /** 自定义渲染：标签页 */
@@ -112,8 +110,9 @@ export const tabsLevelStyleMap: Partial<Record<TabsLevel, TabsLevelStyle>> = {
       fontSize: 16,
       paddingLeft: 8,
       paddingRight: 8,
+      fontWeight: hiTextConfig.hiTextWeightRegular,
     },
-    activeStyle: { fontWeight: hiTextConfig.hiTextWeightBold },
+    activeStyle: { fontWeight: hiTextConfig.hiTextWeightBold, fontSize: 16 },
     tabsItemStartStyle: { paddingLeft: 16 },
     tabsItemEndStyle: { paddingRight: 16 },
     underlineStyle: { height: 1.5, borderRadius: 4.5 },
@@ -127,8 +126,9 @@ export const tabsLevelStyleMap: Partial<Record<TabsLevel, TabsLevelStyle>> = {
       fontSize: 14,
       paddingLeft: 8,
       paddingRight: 8,
+      fontWeight: hiTextConfig.hiTextWeightRegular,
     },
-    activeStyle: { fontWeight: hiTextConfig.hiTextWeightBold },
+    activeStyle: { fontWeight: hiTextConfig.hiTextWeightBold, fontSize: 16 },
     tabsItemStartStyle: { paddingLeft: 16 },
     tabsItemEndStyle: { paddingRight: 16 },
     showUnderline: false,
@@ -155,7 +155,7 @@ export function applyTabsLevel(config: TabsThemeConfig, level?: TabsLevel): Tabs
     tabsItemActiveProps: {
       ...config.tabsItemActiveProps,
       // 选中态：用层级字重 + 字号不放大（覆盖默认 fontSize 17）
-      style: transferStyle([config.tabsItemActiveProps.style, levelStyle.itemStyle, levelStyle.activeStyle]),
+      style: transferStyle([config.tabsItemActiveProps.style, levelStyle.activeStyle]),
     },
     tabsUnderlineProps: levelStyle.underlineStyle
       ? {

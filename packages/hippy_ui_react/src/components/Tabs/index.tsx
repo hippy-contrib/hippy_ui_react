@@ -5,7 +5,7 @@ import Consumer from '../../provider/Consumer';
 import getRenderInfo from './renderInfo';
 import { tabsLevelStyleMap } from './config';
 import HiText from '../HiText';
-import { getObjectType, ObjectType } from '../../utils/Utils';
+import { getObjectType, ObjectType, isWeb } from '../../utils/Utils';
 import { pickTextStyle, transferStyle } from '../../utils/Styles';
 
 /**
@@ -298,8 +298,8 @@ export class Tabs extends Component<TabsProps, TabsState> {
       style: tabStyle,
       onLayout: (e) => {
         this.layoutItems[index] = e;
-        // 仅二级需要实测 item 宽度（下划线=文字宽度一半）；default/三级不记录，避免多余重渲染
-        if (this.props.level === TabsLevel.secondary) {
+        // 仅 native 二级需实测 item 宽度（下划线=文字宽度一半）；H5 用 50% 无需测量，default/三级也不记录
+        if (!isWeb() && this.props.level === TabsLevel.secondary) {
           const width = e.layout.width;
           if (this.state.itemWidths[index] !== width) {
             this.setState((prev) => ({ ...prev, itemWidths: { ...prev.itemWidths, [index]: width } }));

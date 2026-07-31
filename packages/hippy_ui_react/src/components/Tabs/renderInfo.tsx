@@ -1,7 +1,9 @@
 import React, { isValidElement } from 'react';
 import { View, ViewStyle } from '@hippy/react';
 import { TabsRenderParams, TabsRenderInfo, tabsConfig, applyTabsLevel } from './config';
+import { TabsLevel } from './PropsType';
 import { transferStyle, UtilStyles } from '../../utils/Styles';
+import { isWeb } from '../../utils/Utils';
 import Badge from '../Badge';
 import Tabs from './index';
 
@@ -81,11 +83,23 @@ export default function getRenderInfo(params: TabsRenderParams): TabsRenderInfo 
       const itemStyle: ViewStyle = result.itemPropsList[index].style;
       const padLeft = Number(itemStyle.paddingLeft) || 0;
       const padRight = Number(itemStyle.paddingRight) || 0;
-      // 二级下划线宽度 = 文字宽度 × 比例 = (item 实测宽度 - 左右 padding) × ratio
-      const itemWidth = itemWidths?.[index];
-      const widthOverride = itemWidth != null ? { width: (itemWidth - padLeft - padRight) * 0.5 } : null;
+      let widthOverride: ViewStyle | null = null;
+      // 仅二级：下划线宽度 = 文字宽度一半
+      if (level === TabsLevel.secondary) {
+        if (isWeb()) {
+          // H5 支持百分比：mask 已按 padding 内缩，50% 即文字宽度一半
+          widthOverride = { width: '50%' } as unknown as ViewStyle;
+        } else {
+          // native 不支持百分比：用实测 item 宽度（内容宽度 = 实测宽度 - padding）的一半
+          const itemWidth = itemWidths?.[index];
+          if (itemWidth != null) {
+            widthOverride = { width: (itemWidth - padLeft - padRight) * 0.5 };
+          }
+        }
+      }
       return (
-        <View style={[UtilStyles.mask, { marginLeft: padLeft - padRight }]}>
+        // mask 按 padding 内缩 → containing block = 文字区域，百分比可排除 padding 影响
+        <View style={[UtilStyles.mask, { left: padLeft, right: padRight }]}>
           <View
             {...themeConfig.tabsUnderlineProps}
             style={transferStyle([
