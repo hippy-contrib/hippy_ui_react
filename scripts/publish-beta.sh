@@ -6,4 +6,4 @@ preid="beta.${git_sha}"
 auth=""
 registry=""
 yarn build
-lerna publish -y --canary --preid $preid --pre-dist-tag=beta
+lerna publish -y --canary --preid $preid --pre-dist-tag=beta --force-publish
