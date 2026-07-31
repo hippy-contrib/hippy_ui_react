@@ -7,6 +7,7 @@ export enum ButtonType {
   normal = 'normal',
   primary = 'primary',
   text = 'text',
+  ghost = 'ghost',
 }
 
 export enum ButtonSize {
@@ -14,6 +15,7 @@ export enum ButtonSize {
   medium = 'm',
   big = 'b',
   huge = 'h',
+  xhuge = 'xh',
 }
 
 export interface ButtonState {

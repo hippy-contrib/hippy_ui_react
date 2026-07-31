@@ -53,33 +53,55 @@ export const buttonConfig: ThemeConfigButton = {
       overflow: 'hidden',
       outline: 'none',
     };
-    const buttonBorderColor = theme === ThemeMode.dark ? 'rgba(255,255,255,0.1)' : '#F2F2F6';
+    const buttonBorderColor = theme === ThemeMode.dark ? 'rgba(255,255,255,0.12)' : '#F2F2F6';
     // 1. type
     if (type === ButtonType.normal) {
       wrapperStyle.borderWidth = 1;
       wrapperStyle.borderColor = buttonBorderColor;
       wrapperStyle.backgroundColor = themeConfig.colorBg;
     } else if (type === ButtonType.primary) {
-      wrapperStyle.backgroundColor = _disabled ? buttonBorderColor : themeConfig.colorTheme;
+      wrapperStyle.backgroundColor = themeConfig.colorTheme;
+      if (_disabled) {
+        wrapperStyle.opacity = 0.5;
+      }
     } else if (type === ButtonType.text) {
       // pass
+    } else if (type === ButtonType.ghost) {
+      // 透明描边按钮：无背景填充，仅细边框
+      wrapperStyle.borderWidth = 1;
+      wrapperStyle.borderColor = theme === ThemeMode.dark ? 'rgba(255,255,255,0.1)' : 'rgba(17,17,17,0.1)';
     } else {
-      wrapperStyle.backgroundColor = _disabled ? buttonBorderColor : themeConfig.colorFillBody;
+      wrapperStyle.backgroundColor = themeConfig.colorFillBody;
     }
     // 2. size
-    if (size === ButtonSize.huge) {
+    if (size === ButtonSize.xhuge) {
+      // 2.1 ButtonSize.xhuge
+      wrapperStyle = transferStyle([
+        wrapperStyle,
+        {
+          borderRadius: 24,
+          height: 48,
+          paddingLeft: 24,
+          paddingRight: 24,
+        },
+        image && {
+          paddingLeft: 24,
+          paddingRight: 24,
+        },
+      ]);
+    } else if (size === ButtonSize.huge) {
       // 2.1 ButtonSize.huge
       wrapperStyle = transferStyle([
         wrapperStyle,
         {
           borderRadius: 4,
           height: 40,
-          paddingLeft: 32,
-          paddingRight: 32,
+          paddingLeft: 18,
+          paddingRight: 18,
         },
         image && {
-          paddingLeft: 22,
-          paddingRight: 24,
+          paddingLeft: 20,
+          paddingRight: 20,
         },
       ]);
     } else if (size === ButtonSize.big) {
@@ -89,11 +111,11 @@ export const buttonConfig: ThemeConfigButton = {
         {
           borderRadius: 3.6,
           height: 36,
-          paddingLeft: 32,
-          paddingRight: 32,
+          paddingLeft: 18,
+          paddingRight: 18,
         },
         image && {
-          paddingLeft: 18,
+          paddingLeft: 20,
           paddingRight: 20,
         },
       ]);
@@ -121,12 +143,12 @@ export const buttonConfig: ThemeConfigButton = {
           borderRadius: 3.2,
           height: 32,
           minWidth: 64,
-          paddingLeft: 20,
-          paddingRight: 20,
+          paddingLeft: 16,
+          paddingRight: 16,
         },
         image && {
-          paddingLeft: 10,
-          paddingRight: 12,
+          paddingLeft: 16,
+          paddingRight: 16,
         },
       ]);
     }
@@ -135,17 +157,28 @@ export const buttonConfig: ThemeConfigButton = {
   // 图片样式
   buttonImgStyleFn: (params) => {
     const {
-      props: { size },
+      props: { size, disabled, loading, type },
     } = params;
+    const _disabled = disabled || loading;
     let imageStyle: ViewStyle = {};
-    if (size === ButtonSize.huge) {
-      // ButtonSize.huge
+    if (size === ButtonSize.xhuge) {
+      // ButtonSize.xhuge
       imageStyle = transferStyle([
         imageStyle,
         {
           width: 24,
           height: 24,
-          marginRight: 2,
+          marginRight: 6,
+        },
+      ]);
+    } else if (size === ButtonSize.huge) {
+      // ButtonSize.huge
+      imageStyle = transferStyle([
+        imageStyle,
+        {
+          width: 18,
+          height: 18,
+          marginRight: 6,
         },
       ]);
     } else if (size === ButtonSize.big) {
@@ -153,9 +186,9 @@ export const buttonConfig: ThemeConfigButton = {
       imageStyle = transferStyle([
         imageStyle,
         {
-          width: 24,
-          height: 24,
-          marginRight: 2,
+          width: 18,
+          height: 18,
+          marginRight: 6,
         },
       ]);
     } else if (size === ButtonSize.small) {
@@ -173,11 +206,14 @@ export const buttonConfig: ThemeConfigButton = {
       imageStyle = transferStyle([
         imageStyle,
         {
-          width: 20,
-          height: 20,
-          marginRight: 2,
+          width: 14,
+          height: 14,
+          marginRight: 4,
         },
       ]);
+    }
+    if (_disabled && type !== ButtonType.primary) {
+      imageStyle.opacity = 0.5;
     }
     return imageStyle;
   },
@@ -201,12 +237,17 @@ export const buttonConfig: ThemeConfigButton = {
       textProps.color = '#fff';
     } else if (type === ButtonType.text) {
       textProps.color = themeConfig.colorTheme;
+    } else if (type === ButtonType.ghost) {
+      textProps.color = theme === ThemeMode.dark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)';
     } else {
       textProps.color = themeConfig.colorTextBase;
     }
 
-    if (size === ButtonSize.huge) {
-      textProps.size = 15;
+    if (size === ButtonSize.xhuge) {
+      textProps.size = 16;
+      textProps.weight = hiTextConfig.hiTextWeightBold;
+    } else if (size === ButtonSize.huge) {
+      textProps.size = 14;
       textProps.weight = hiTextConfig.hiTextWeightBold;
     } else if (size === ButtonSize.big) {
       textProps.size = 14;
@@ -219,7 +260,9 @@ export const buttonConfig: ThemeConfigButton = {
       textProps.weight = hiTextConfig.hiTextWeightMedium;
     }
 
-    _disabled && (textProps.color = theme === ThemeMode.dark ? 'rgba(255,255,255,0.2)' : 'rgba(17,17,17,0.2)');
+    if (_disabled && type !== ButtonType.primary) {
+      textProps.opacity = 0.5;
+    }
     return textProps;
   },
   // 前置图

@@ -21,6 +21,9 @@ const ButtonExample: FC = () => {
         <Button type={Button.type.text} style={{ marginTop: 10 }}>
           {'类型：Button.type.text'}
         </Button>
+        <Button type={Button.type.ghost} round style={{ marginTop: 10 }}>
+          {'类型：Button.type.ghost'}
+        </Button>
       </ComExample>
 
       {/* 按钮尺寸 */}
@@ -35,11 +38,15 @@ const ButtonExample: FC = () => {
         <Button size={Button.size.huge} style={{ marginTop: 10 }}>
           {'尺寸-H-40：Button.size.huge'}
         </Button>
+        <Button size={Button.size.xhuge} style={{ marginTop: 10 }}>
+          {'尺寸-XH-48：Button.size.xhuge'}
+        </Button>
         <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
           <Button size={Button.size.small}>{'S'}</Button>
           <Button size={Button.size.medium}>{'M'}</Button>
           <Button size={Button.size.big}>{'B'}</Button>
           <Button size={Button.size.huge}>{'H'}</Button>
+          <Button size={Button.size.xhuge}>{'XH'}</Button>
         </View>
       </ComExample>
 
@@ -64,6 +71,9 @@ const ButtonExample: FC = () => {
         </Button>
         <Button loading={true} type={Button.type.text} style={{ marginTop: 10 }}>
           {'加载中：Button.type.text'}
+        </Button>
+        <Button disabled={true} type={Button.type.ghost} round style={{ marginTop: 10 }}>
+          {'禁止点击：Button.type.ghost'}
         </Button>
       </ComExample>
 
