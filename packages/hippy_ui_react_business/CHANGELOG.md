@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.39 (2026-07-31)
+
+
+### Bug Fixes
+
+* add build step before publish-beta ([0724d89](https://github.com/hippy-contrib/hippy_ui_react/commit/0724d893d18c7324584bc69c454726ddc6955f3c))
+
+
+
+
+
 ## 1.2.38 (2026-01-16)
 
 
