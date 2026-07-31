@@ -1,6 +1,6 @@
 import React, { isValidElement } from 'react';
 import { View, ViewStyle } from '@hippy/react';
-import { TabsRenderParams, TabsRenderInfo, tabsConfig } from './config';
+import { TabsRenderParams, TabsRenderInfo, tabsConfig, applyTabsLevel } from './config';
 import { transferStyle, UtilStyles } from '../../utils/Styles';
 import Badge from '../Badge';
 import Tabs from './index';
@@ -9,10 +9,11 @@ import Tabs from './index';
 export default function getRenderInfo(params: TabsRenderParams): TabsRenderInfo {
   const {
     consumerValue: { renderInfo, themeConfig: _themeConfig },
-    state: { activeIndex },
+    state: { activeIndex, itemWidths },
     props: {
       values,
       style,
+      level,
       itemStyleFn,
       activeStyleFn,
       underlineStyleFn,
@@ -23,7 +24,8 @@ export default function getRenderInfo(params: TabsRenderParams): TabsRenderInfo 
     },
   } = params;
 
-  const themeConfig = { ...tabsConfig, ..._themeConfig };
+  // 层级预设一次性合并进 themeConfig，后续直接读 themeConfig.*
+  const themeConfig = applyTabsLevel({ ...tabsConfig, ..._themeConfig }, level);
   // 结果
   const result: TabsRenderInfo = {
     wrapProps: {
@@ -50,7 +52,10 @@ export default function getRenderInfo(params: TabsRenderParams): TabsRenderInfo 
           i === 0 && themeConfig.tabsItemStartStyle,
           i === values.length - 1 && themeConfig.tabsItemEndStyle,
           itemStyleFn?.(i),
-          isActive && { color: themeConfig.colorTextBase, fontWeight: themeConfig.hiTextWeightMedium },
+          isActive && {
+            color: themeConfig.colorTextBase,
+            fontWeight: themeConfig.hiTextWeightMedium,
+          },
           isActive && themeConfig.tabsItemActiveProps.style,
           isActive && activeStyleFn?.(i),
         ]),
@@ -74,13 +79,19 @@ export default function getRenderInfo(params: TabsRenderParams): TabsRenderInfo 
       : [],
     underline: (index: number) => {
       const itemStyle: ViewStyle = result.itemPropsList[index].style;
+      const padLeft = Number(itemStyle.paddingLeft) || 0;
+      const padRight = Number(itemStyle.paddingRight) || 0;
+      // 二级下划线宽度 = 文字宽度 × 比例 = (item 实测宽度 - 左右 padding) × ratio
+      const itemWidth = itemWidths?.[index];
+      const widthOverride = itemWidth != null ? { width: (itemWidth - padLeft - padRight) * 0.5 } : null;
       return (
-        <View style={[UtilStyles.mask, { marginLeft: itemStyle.paddingLeft - itemStyle.paddingRight }]}>
+        <View style={[UtilStyles.mask, { marginLeft: padLeft - padRight }]}>
           <View
             {...themeConfig.tabsUnderlineProps}
             style={transferStyle([
               { backgroundColor: themeConfig.colorTheme },
               themeConfig.tabsUnderlineProps.style,
+              widthOverride,
               underlineStyleFn?.(index),
             ])}
           />

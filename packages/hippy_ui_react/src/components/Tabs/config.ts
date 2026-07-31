@@ -1,8 +1,10 @@
 import { PropsWithChildren, ReactNode } from 'react';
-import { ViewProps, ScrollViewProps, ViewStyle } from '@hippy/react';
+import { ViewProps, ScrollViewProps, ViewStyle, TextStyle } from '@hippy/react';
 import { ConsumerValue } from '../../provider/PropsType';
-import { TabsProps, TabsState } from './PropsType';
+import { TabsProps, TabsState, TabsLevel } from './PropsType';
 import { BadgeProps } from '../Badge/PropsType';
+import { hiTextConfig } from '../HiText/config';
+import { transferStyle } from '../../utils/Styles';
 
 /** 主题配置：标签页 */
 export interface ThemeConfigTabs {
@@ -13,6 +15,8 @@ export interface ThemeConfigTabs {
   tabsItemActiveProps: ViewProps;
   tabsUnderlineProps: ViewProps;
   tabsBadgeProps: BadgeProps;
+  /** 下划线宽度相对 item 内容(文字)宽度的比例（如 0.5 = 文字宽度一半）；不设则用固定宽度 */
+  tabsUnderlineContentRatio?: number;
 }
 
 /** 自定义渲染：标签页 */
@@ -82,3 +86,87 @@ export const tabsConfig: ThemeConfigTabs = {
     },
   },
 };
+
+/** 标签页层级样式预设（default 不录入 → 走默认 tabsConfig，保留原实现） */
+export interface TabsLevelStyle {
+  /** tab item 基础样式覆盖 */
+  itemStyle: ViewStyle;
+  /** 选中态样式 */
+  activeStyle: TextStyle;
+  /** 首项左间距 */
+  tabsItemStartStyle: ViewStyle;
+  /** 尾项右间距 */
+  tabsItemEndStyle: ViewStyle;
+  /** 下划线样式覆盖（二级） */
+  underlineStyle?: ViewStyle;
+  /** 是否默认显示下划线 */
+  showUnderline?: boolean;
+}
+
+export const tabsLevelStyleMap: Partial<Record<TabsLevel, TabsLevelStyle>> = {
+  [TabsLevel.secondary]: {
+    // 二级 tabs：字号 16、行高 20、选中 Semibold、padding 撑开间距、黑色短下划线（文字宽度一半）
+    itemStyle: {
+      height: 24.5,
+      lineHeight: 20,
+      fontSize: 16,
+      paddingLeft: 8,
+      paddingRight: 8,
+    },
+    activeStyle: { fontWeight: hiTextConfig.hiTextWeightBold },
+    tabsItemStartStyle: { paddingLeft: 16 },
+    tabsItemEndStyle: { paddingRight: 16 },
+    underlineStyle: { height: 1.5, borderRadius: 4.5 },
+    showUnderline: true,
+  },
+  [TabsLevel.tertiary]: {
+    // 三级 tabs：字号 14、行高 20、选中 Semibold、padding 撑开间距、无下划线
+    itemStyle: {
+      height: 20,
+      lineHeight: 20,
+      fontSize: 14,
+      paddingLeft: 8,
+      paddingRight: 8,
+    },
+    activeStyle: { fontWeight: hiTextConfig.hiTextWeightBold },
+    tabsItemStartStyle: { paddingLeft: 16 },
+    tabsItemEndStyle: { paddingRight: 16 },
+    showUnderline: false,
+  },
+};
+
+type TabsThemeConfig = ConsumerValue['themeConfig'] & ThemeConfigTabs;
+
+/**
+ * 将层级预设合并进 themeConfig，返回带层级覆盖的配置。
+ * 合并后 renderInfo 直接读取 themeConfig.* 即可，无需逐处判断 level。
+ */
+export function applyTabsLevel(config: TabsThemeConfig, level?: TabsLevel): TabsThemeConfig {
+  const levelStyle = level ? tabsLevelStyleMap[level] : undefined;
+  if (!levelStyle) return config;
+  return {
+    ...config,
+    tabsItemProps: {
+      ...config.tabsItemProps,
+      style: transferStyle([config.tabsItemProps.style, levelStyle.itemStyle]),
+    },
+    tabsItemStartStyle: levelStyle.tabsItemStartStyle ?? config.tabsItemStartStyle,
+    tabsItemEndStyle: levelStyle.tabsItemEndStyle ?? config.tabsItemEndStyle,
+    tabsItemActiveProps: {
+      ...config.tabsItemActiveProps,
+      // 选中态：用层级字重 + 字号不放大（覆盖默认 fontSize 17）
+      style: transferStyle([config.tabsItemActiveProps.style, levelStyle.itemStyle, levelStyle.activeStyle]),
+    },
+    tabsUnderlineProps: levelStyle.underlineStyle
+      ? {
+          ...config.tabsUnderlineProps,
+          // 二级下划线用文字色（黑/暗色白）
+          style: transferStyle([
+            config.tabsUnderlineProps.style,
+            { backgroundColor: config.colorTextBase },
+            levelStyle.underlineStyle,
+          ]),
+        }
+      : config.tabsUnderlineProps,
+  };
+}

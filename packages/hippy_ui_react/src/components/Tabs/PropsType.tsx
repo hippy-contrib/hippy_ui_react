@@ -2,6 +2,11 @@ import { ReactNode } from 'react';
 import { ViewStyle, GenericStyleProp, Style, TextStyle, ViewProps } from '@hippy/react';
 import { BadgeProps } from '../Badge/PropsType';
 
+export enum TabsLevel {
+  secondary = 2,
+  tertiary = 3,
+}
+
 export interface TabValue {
   text: string;
   textImg?: string;
@@ -20,6 +25,8 @@ export interface TabRenderItemParams {
 }
 
 export interface TabsProps {
+  /** 标签页层级：不传=默认（原实现），2=二级，3=三级 */
+  level?: TabsLevel;
   /** Tab列表。可以是文字，也可以是完整信息（带图异化） */
   values: Array<string | TabValue>;
   /** 当前选中tab的序号 */
@@ -69,6 +76,8 @@ export interface TabsState {
   activeIndex: number;
   isEquallyDivide: boolean;
   imgSizeMap: Record<string, { loading: number; size?: { width: number; height: number } }>;
+  /** 各 tab 的实测宽度（含 padding），用于下划线宽度计算 */
+  itemWidths: Record<number, number>;
 }
 
 export interface ScrollIndexParams {
