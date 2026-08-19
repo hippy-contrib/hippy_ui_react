@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.41 (2026-08-19)
+
+
+### Bug Fixes
+
+* force publish all packages in beta ([c932994](https://github.com/hippy-contrib/hippy_ui_react/commit/c932994456ada34fa93c5f18aee22aa3a4b5fef8))
+
+
+
+
+
 ## 1.2.40 (2026-08-19)
 
 **Note:** Version bump only for package hippy_ui_react_business
