@@ -1,7 +1,9 @@
 import React, { isValidElement } from 'react';
 import { View, ViewStyle } from '@hippy/react';
-import { TabsRenderParams, TabsRenderInfo, tabsConfig } from './config';
+import { TabsRenderParams, TabsRenderInfo, tabsConfig, applyTabsLevel } from './config';
+import { TabsLevel } from './PropsType';
 import { transferStyle, UtilStyles } from '../../utils/Styles';
+import { isWeb } from '../../utils/Utils';
 import Badge from '../Badge';
 import Tabs from './index';
 
@@ -9,10 +11,11 @@ import Tabs from './index';
 export default function getRenderInfo(params: TabsRenderParams): TabsRenderInfo {
   const {
     consumerValue: { renderInfo, themeConfig: _themeConfig },
-    state: { activeIndex },
+    state: { activeIndex, itemWidths },
     props: {
       values,
       style,
+      level,
       itemStyleFn,
       activeStyleFn,
       underlineStyleFn,
@@ -23,7 +26,8 @@ export default function getRenderInfo(params: TabsRenderParams): TabsRenderInfo 
     },
   } = params;
 
-  const themeConfig = { ...tabsConfig, ..._themeConfig };
+  // 层级预设一次性合并进 themeConfig，后续直接读 themeConfig.*
+  const themeConfig = applyTabsLevel({ ...tabsConfig, ..._themeConfig }, level);
   // 结果
   const result: TabsRenderInfo = {
     wrapProps: {
@@ -50,7 +54,10 @@ export default function getRenderInfo(params: TabsRenderParams): TabsRenderInfo 
           i === 0 && themeConfig.tabsItemStartStyle,
           i === values.length - 1 && themeConfig.tabsItemEndStyle,
           itemStyleFn?.(i),
-          isActive && { color: themeConfig.colorTextBase, fontWeight: themeConfig.hiTextWeightMedium },
+          isActive && {
+            color: themeConfig.colorTextBase,
+            fontWeight: themeConfig.hiTextWeightMedium,
+          },
           isActive && themeConfig.tabsItemActiveProps.style,
           isActive && activeStyleFn?.(i),
         ]),
@@ -74,13 +81,31 @@ export default function getRenderInfo(params: TabsRenderParams): TabsRenderInfo 
       : [],
     underline: (index: number) => {
       const itemStyle: ViewStyle = result.itemPropsList[index].style;
+      const padLeft = Number(itemStyle.paddingLeft) || 0;
+      const padRight = Number(itemStyle.paddingRight) || 0;
+      let widthOverride: ViewStyle | null = null;
+      // 仅二级：下划线宽度 = 文字宽度一半
+      if (level === TabsLevel.secondary) {
+        if (isWeb()) {
+          // H5 支持百分比：mask 已按 padding 内缩，50% 即文字宽度一半
+          widthOverride = { width: '50%' } as unknown as ViewStyle;
+        } else {
+          // native 不支持百分比：用实测 item 宽度（内容宽度 = 实测宽度 - padding）的一半
+          const itemWidth = itemWidths?.[index];
+          if (itemWidth != null) {
+            widthOverride = { width: (itemWidth - padLeft - padRight) * 0.5 };
+          }
+        }
+      }
       return (
-        <View style={[UtilStyles.mask, { marginLeft: itemStyle.paddingLeft - itemStyle.paddingRight }]}>
+        // mask 按 padding 内缩 → containing block = 文字区域，百分比可排除 padding 影响
+        <View style={[UtilStyles.mask, { left: padLeft, right: padRight }]}>
           <View
             {...themeConfig.tabsUnderlineProps}
             style={transferStyle([
               { backgroundColor: themeConfig.colorTheme },
               themeConfig.tabsUnderlineProps.style,
+              widthOverride,
               underlineStyleFn?.(index),
             ])}
           />

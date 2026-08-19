@@ -30,7 +30,7 @@ export enum ColorAbsolute {
   white70 = 'rgba(255,255,255,0.7)', // "#FFFFFFB3",
   white50 = 'rgba(255,255,255,0.5)', // "#FFFFFF80",
   white10 = 'rgba(255,255,255,0.1)', // "#FFFFFF1A",
-  grey = '#F2F2F6',
+  grey = '#F6F6F8',
   lightRed = '#FFEEEE',
   lightPurple = '#F4EBFF',
   lightPink = '#FFEDF1',

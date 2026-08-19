@@ -1,10 +1,11 @@
 import React, { Component, ReactNode } from 'react';
 import { ScrollView, TextStyle, View, ViewProps, LayoutEvent, ScrollEvent, ViewStyle, Image } from '@hippy/react';
-import { ScrollIndexParams, TabsProps, TabsState, TabValue } from './PropsType';
+import { ScrollIndexParams, TabsProps, TabsState, TabValue, TabsLevel } from './PropsType';
 import Consumer from '../../provider/Consumer';
 import getRenderInfo from './renderInfo';
+import { tabsLevelStyleMap } from './config';
 import HiText from '../HiText';
-import { getObjectType, ObjectType } from '../../utils/Utils';
+import { getObjectType, ObjectType, isWeb } from '../../utils/Utils';
 import { pickTextStyle, transferStyle } from '../../utils/Styles';
 
 /**
@@ -15,12 +16,15 @@ export class Tabs extends Component<TabsProps, TabsState> {
     autoScroll: { offset: 'center', animated: true },
   };
 
+  static level = TabsLevel;
+
   constructor(props: TabsProps) {
     super(props);
     this.state = {
       activeIndex: props.activeIndex || props.defaultActiveIndex || 0,
       isEquallyDivide: false,
       imgSizeMap: {},
+      itemWidths: {},
     };
     ((props.autoScroll && this.state.activeIndex) || props.initAutoScroll) &&
       this.props.initialContentOffset === undefined &&
@@ -294,6 +298,13 @@ export class Tabs extends Component<TabsProps, TabsState> {
       style: tabStyle,
       onLayout: (e) => {
         this.layoutItems[index] = e;
+        // 仅 native 二级需实测 item 宽度（下划线=文字宽度一半）；H5 用 50% 无需测量，default/三级也不记录
+        if (!isWeb() && this.props.level === TabsLevel.secondary) {
+          const width = e.layout.width;
+          if (this.state.itemWidths[index] !== width) {
+            this.setState((prev) => ({ ...prev, itemWidths: { ...prev.itemWidths, [index]: width } }));
+          }
+        }
         this.initEquallyDivide();
         renderTabProps.onLayout?.(e);
       },
@@ -370,7 +381,10 @@ export class Tabs extends Component<TabsProps, TabsState> {
       <Consumer>
         {(consumerValue) => {
           const { state, props } = this;
-          const { values, showUnderline } = props;
+          const { values, showUnderline, level } = props;
+          // 层级预设的下划线默认值：二级默认显示、三级默认不显示、default 不变（沿用 showUnderline 入参）
+          const levelPreset = level ? tabsLevelStyleMap[level] : undefined;
+          const _showUnderline = showUnderline !== undefined ? showUnderline : levelPreset?.showUnderline;
           const {
             wrapProps,
             itemPropsList,
@@ -404,7 +418,7 @@ export class Tabs extends Component<TabsProps, TabsState> {
                   index,
                   tabProps: itemPropsList[index],
                   badge: badgeList.find((v) => v.index === index)?.view,
-                  underline: isActive && showUnderline ? underlineFn(index) : undefined,
+                  underline: isActive && _showUnderline ? underlineFn(index) : undefined,
                 });
               })}
             </ScrollView>

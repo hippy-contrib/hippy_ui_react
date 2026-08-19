@@ -8,6 +8,7 @@
   <Button type={Button.type.normal} style={{marginTop: 10}}>{"类型：Button.type.normal"}</Button>
   <Button type={Button.type.primary} style={{marginTop: 10}}>{"类型：Button.type.primary"}</Button>
   <Button type={Button.type.text} style={{marginTop: 10}}>{"类型：Button.type.text"}</Button>
+  <Button type={Button.type.ghost} round style={{marginTop: 10}}>{"类型：Button.type.ghost"}</Button>
 </View>
 ```
 
@@ -21,11 +22,13 @@
   <Button size={Button.size.medium} style={{marginTop: 10}}>{"尺寸-M-32：Button.size.medium"}</Button>
   <Button size={Button.size.big} style={{marginTop: 10}}>{"尺寸-B-36：Button.size.big"}</Button>
   <Button size={Button.size.huge} style={{marginTop: 10}}>{"尺寸-H-40：Button.size.huge"}</Button>
+  <Button size={Button.size.xhuge} style={{marginTop: 10}}>{"尺寸-XH-48：Button.size.xhuge"}</Button>
   <View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginTop: 10 }}>
     <Button size={Button.size.small}>{"S"}</Button>
     <Button size={Button.size.medium}>{"M"}</Button>
     <Button size={Button.size.big}>{"B"}</Button>
     <Button size={Button.size.huge}>{"H"}</Button>
+    <Button size={Button.size.xhuge}>{"XH"}</Button>
   </View>
 </View>
 ```
@@ -52,6 +55,9 @@
   </Button>
   <Button loading={true} type={Button.type.text} style={{marginTop: 10}}>
     {"加载中：Button.type.text"}
+  </Button>
+  <Button disabled={true} type={Button.type.ghost} round style={{marginTop: 10}}>
+    {"禁止点击：Button.type.ghost"}
   </Button>
 </View>
 ```

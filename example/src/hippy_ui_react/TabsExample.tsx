@@ -166,6 +166,31 @@ const TabsExample: FC = () => {
           }}
         />
       </ComExample>
+
+      {/* 层级样式 */}
+      <ComExample
+        title={'层级样式'}
+        desc={
+          '- `level` 设置层级：不传=默认（原实现，红色固定下划线，需 showUnderline）；2=二级（黑色短下划线，宽度为文字宽度一半，选中加粗）；3=三级（无下划线、字号更小、选中加粗）。'
+        }
+      >
+        {/* 默认：原实现，红色固定下划线 */}
+        <Tabs values={['测试1', '测试2', '测试3', '测试4']} activeIndex={1} showUnderline={true} />
+        {/* 二级：黑色短下划线，宽度=文字宽度一半，选中加粗 */}
+        <Tabs
+          values={['选项一', '选项二', '选项三', '选项四', '选项五']}
+          activeIndex={0}
+          level={Tabs.level.secondary}
+          style={{ marginTop: 10 }}
+        />
+        {/* 三级：无下划线、字号更小、选中加粗 */}
+        <Tabs
+          values={['选项一', '选项二', '选项三', '选项四', '选项五']}
+          activeIndex={0}
+          level={Tabs.level.tertiary}
+          style={{ marginTop: 10 }}
+        />
+      </ComExample>
     </View>
   );
 };
